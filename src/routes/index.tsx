@@ -6,7 +6,9 @@ import tumbuhKembangHero from "@/assets/tumbuh-kembang-hero.jpg";
 import newbornOfflineHero from "@/assets/newborn-care-offline-hero.jpg";
 import newbornSurabayaHero from "@/assets/newborn-care-surabaya-hero.jpg";
 import laktasiHero from "@/assets/laktasi-hero.jpg";
+import gtmCard from "@/assets/gtm-card.jpg";
 import coupleYogaPoster from "@/lib/couple-yoga-poster";
+import { GTM_OFFER } from "@/lib/gtm-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -160,6 +162,23 @@ const EVENTS: EventItem[] = [
     status: "open",
     image: coupleYogaPoster.url,
   },
+  {
+    slug: "gtm-online",
+    to: "/kelas-gtm-online",
+    tag: "Kelas Online · On-demand",
+    title: GTM_OFFER.name,
+    desc: "Anak lepeh, emut, atau tutup mulut saat makan? Pahami proses belajar makan lewat video singkat bersama dr. Frecillia Regina, Sp.A, IBCLC.",
+    facts: [
+      { k: "Format", v: "Video on-demand" },
+      { k: "Durasi", v: `${GTM_OFFER.totalVideos} Video · ${GTM_OFFER.duration}` },
+      { k: "Lokasi", v: "Daring" },
+      { k: "Jadwal", v: "Tonton kapan saja" },
+    ],
+    price: GTM_OFFER.priceLabel,
+    // Same switch as the page's buy button: "open" only once the order link exists.
+    status: GTM_OFFER.orderUrl ? "open" : "soon",
+    image: gtmCard,
+  },
 ];
 
 
@@ -234,14 +253,15 @@ function Directory() {
                     {e.price}
                   </div>
                   <span className="flex items-center gap-1.5 text-[13px] font-bold text-primary">
-                    {e.status === "open" ? "Lihat detail" : "Notifikasi"}
+                    {e.status === "full" ? "Notifikasi" : "Lihat detail"}
                     <span className="transition group-hover:translate-x-0.5">→</span>
                   </span>
                 </div>
               </article>
             );
 
-            if (e.status !== "open") {
+            // "soon" cards still open their page (it exists, only ordering is not open yet).
+            if (e.status === "full") {
               return (
                 <div key={e.slug} className="opacity-80">
                   {card}

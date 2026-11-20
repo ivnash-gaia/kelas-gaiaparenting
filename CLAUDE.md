@@ -29,6 +29,7 @@ Built from the brief "Course GTM — Brief, Kreatif & Panduan Campaign". All cop
 - Doctor quotes (`GTM_QUOTES`, `GTM_CURRICULUM[].hook`) must be checked against the video before launch.
 - `src/lib/gtm-data.test.js` pins these flags; update it deliberately when a term is confirmed.
 - The `Purchase` pixel event belongs on the thank-you page, which is outside this site.
+- The homepage card (last entry of `EVENTS` in `src/routes/index.tsx`, image `src/assets/gtm-card.jpg`) reads the same data: it shows "Segera Hadir" until `orderUrl` is set, then flips to "Pendaftaran Dibuka" by itself. "Segera Hadir" cards still link to their page.
 
 ## Gotchas
 
