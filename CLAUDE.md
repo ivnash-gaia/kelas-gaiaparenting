@@ -20,6 +20,16 @@ Push to `main` → Cloudflare Pages builds and publishes. Unlike the Academy thi
 
 Local check: `npm ci && npm run build`, then open `.output/public` through any static server.
 
+## Course GTM landing page (`/kelas-gtm-online`)
+
+Built from the brief "Course GTM — Brief, Kreatif & Panduan Campaign". All copy and offer facts live in `src/lib/gtm-data.ts`; `src/components/gtm/GtmPage.tsx` only renders them. Same "offer module" idea as the Academy: anything not confirmed is `null`/`false` and the page degrades instead of promising it.
+
+- `GTM_OFFER.orderUrl` is `null` → the buy buttons are disabled. Set it to the orderonline.id link to enable them (UTM params from the ad URL are passed through, `InitiateCheckout` fires on click).
+- `accessDuration: null` and `bonusesConfirmed: false` keep the access period and the bonus block off the page. `GTM_TESTIMONIALS` is empty, so the testimonial section is not rendered. `GTM_ASSETS` (all `null`) holds the hero video/photos; fill in as files arrive in `public/og/` or `src/assets/`.
+- Doctor quotes (`GTM_QUOTES`, `GTM_CURRICULUM[].hook`) must be checked against the video before launch.
+- `src/lib/gtm-data.test.js` pins these flags; update it deliberately when a term is confirmed.
+- The `Purchase` pixel event belongs on the thank-you page, which is outside this site.
+
 ## Gotchas
 
 - **New page** = new file in `src/routes/` **and** its path added to `PAGES` in `vite.config.ts`. Without the second step no HTML file is produced and the URL 404s.

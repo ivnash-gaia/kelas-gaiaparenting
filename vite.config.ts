@@ -23,6 +23,7 @@ const PAGES = [
   "/kelas-newborn-care-offline-surabaya",
   "/kelas-tumbuh-kembang-anak-online",
   "/couple-yoga-and-childbirth-preparation",
+  "/kelas-gtm-online",
   "/test-page",
 ];
 

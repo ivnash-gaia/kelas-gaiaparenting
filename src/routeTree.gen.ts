@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CoupleYogaAndChildbirthPreparationRouteImport } from './routes/couple-yoga-and-childbirth-preparation'
 import { Route as GaiaAcademyRouteImport } from './routes/gaia-academy'
+import { Route as KelasGtmOnlineRouteImport } from './routes/kelas-gtm-online'
 import { Route as KelasLaktasiOnlineRouteImport } from './routes/kelas-laktasi-online'
 import { Route as KelasMpasiOnlineRouteImport } from './routes/kelas-mpasi-online'
 import { Route as KelasNewbornCareRouteImport } from './routes/kelas-newborn-care'
@@ -35,6 +36,11 @@ const CoupleYogaAndChildbirthPreparationRoute =
 const GaiaAcademyRoute = GaiaAcademyRouteImport.update({
   id: '/gaia-academy',
   path: '/gaia-academy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KelasGtmOnlineRoute = KelasGtmOnlineRouteImport.update({
+  id: '/kelas-gtm-online',
+  path: '/kelas-gtm-online',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KelasLaktasiOnlineRoute = KelasLaktasiOnlineRouteImport.update({
@@ -84,6 +90,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/couple-yoga-and-childbirth-preparation': typeof CoupleYogaAndChildbirthPreparationRoute
   '/gaia-academy': typeof GaiaAcademyRoute
+  '/kelas-gtm-online': typeof KelasGtmOnlineRoute
   '/kelas-laktasi-online': typeof KelasLaktasiOnlineRoute
   '/kelas-mpasi-online': typeof KelasMpasiOnlineRoute
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
@@ -97,6 +104,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/couple-yoga-and-childbirth-preparation': typeof CoupleYogaAndChildbirthPreparationRoute
   '/gaia-academy': typeof GaiaAcademyRoute
+  '/kelas-gtm-online': typeof KelasGtmOnlineRoute
   '/kelas-laktasi-online': typeof KelasLaktasiOnlineRoute
   '/kelas-mpasi-online': typeof KelasMpasiOnlineRoute
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
@@ -111,6 +119,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/couple-yoga-and-childbirth-preparation': typeof CoupleYogaAndChildbirthPreparationRoute
   '/gaia-academy': typeof GaiaAcademyRoute
+  '/kelas-gtm-online': typeof KelasGtmOnlineRoute
   '/kelas-laktasi-online': typeof KelasLaktasiOnlineRoute
   '/kelas-mpasi-online': typeof KelasMpasiOnlineRoute
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
@@ -126,6 +135,7 @@ export interface FileRouteTypes {
     | '/'
     | '/couple-yoga-and-childbirth-preparation'
     | '/gaia-academy'
+    | '/kelas-gtm-online'
     | '/kelas-laktasi-online'
     | '/kelas-mpasi-online'
     | '/kelas-newborn-care'
@@ -139,6 +149,7 @@ export interface FileRouteTypes {
     | '/'
     | '/couple-yoga-and-childbirth-preparation'
     | '/gaia-academy'
+    | '/kelas-gtm-online'
     | '/kelas-laktasi-online'
     | '/kelas-mpasi-online'
     | '/kelas-newborn-care'
@@ -152,6 +163,7 @@ export interface FileRouteTypes {
     | '/'
     | '/couple-yoga-and-childbirth-preparation'
     | '/gaia-academy'
+    | '/kelas-gtm-online'
     | '/kelas-laktasi-online'
     | '/kelas-mpasi-online'
     | '/kelas-newborn-care'
@@ -166,6 +178,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CoupleYogaAndChildbirthPreparationRoute: typeof CoupleYogaAndChildbirthPreparationRoute
   GaiaAcademyRoute: typeof GaiaAcademyRoute
+  KelasGtmOnlineRoute: typeof KelasGtmOnlineRoute
   KelasLaktasiOnlineRoute: typeof KelasLaktasiOnlineRoute
   KelasMpasiOnlineRoute: typeof KelasMpasiOnlineRoute
   KelasNewbornCareRoute: typeof KelasNewbornCareRoute
@@ -197,6 +210,13 @@ declare module '@tanstack/react-router' {
       path: '/gaia-academy'
       fullPath: '/gaia-academy'
       preLoaderRoute: typeof GaiaAcademyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kelas-gtm-online': {
+      id: '/kelas-gtm-online'
+      path: '/kelas-gtm-online'
+      fullPath: '/kelas-gtm-online'
+      preLoaderRoute: typeof KelasGtmOnlineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kelas-laktasi-online': {
@@ -263,6 +283,7 @@ const rootRouteChildren: RootRouteChildren = {
   CoupleYogaAndChildbirthPreparationRoute:
     CoupleYogaAndChildbirthPreparationRoute,
   GaiaAcademyRoute: GaiaAcademyRoute,
+  KelasGtmOnlineRoute: KelasGtmOnlineRoute,
   KelasLaktasiOnlineRoute: KelasLaktasiOnlineRoute,
   KelasMpasiOnlineRoute: KelasMpasiOnlineRoute,
   KelasNewbornCareRoute: KelasNewbornCareRoute,
