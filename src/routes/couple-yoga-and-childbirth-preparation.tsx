@@ -6,7 +6,7 @@ import coupleYogaPoster from "@/lib/couple-yoga-poster";
 export const Route = createFileRoute("/couple-yoga-and-childbirth-preparation")({
   head: () => ({
     meta: [
-      { title: "Kelas Hari Pertama di Rumah — Gaia Parenting" },
+      { title: "Kelas Hari Pertama di Rumah | Gaia Parenting" },
       {
         name: "description",
         content:
@@ -14,7 +14,7 @@ export const Route = createFileRoute("/couple-yoga-and-childbirth-preparation")(
       },
       {
         property: "og:title",
-        content: "Kelas Hari Pertama di Rumah — Gaia Parenting",
+        content: "Kelas Hari Pertama di Rumah | Gaia Parenting",
       },
       {
         property: "og:description",

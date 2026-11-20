@@ -5,17 +5,17 @@ import { NEWBORN_CARE_OFFLINE_EVENT } from "@/lib/event-newborn-care-offline";
 export const Route = createFileRoute("/kelas-newborn-care-offline")({
   head: () => ({
     meta: [
-      { title: "Kelas Perawatan Bayi Baru Lahir (Offline) — Gaia Parenting" },
+      { title: "Kelas Perawatan Bayi Baru Lahir (Offline) | Gaia Parenting" },
       {
         name: "description",
         content:
-          "Kelas offline praktik untuk orang tua baru — persiapan persalinan, perawatan bayi, menyusui. Jadwal Oktober–Desember 2026 di Jabodetabek, Bandung, dan Surabaya. Hemat 45% untuk pasangan.",
+          "Kelas offline praktik untuk orang tua baru: persiapan persalinan, perawatan bayi, menyusui. Jadwal Oktober–Desember 2026 di Jabodetabek, Bandung, dan Surabaya. Hemat 45% untuk pasangan.",
       },
-      { property: "og:title", content: "Kelas Perawatan Bayi Baru Lahir (Offline) — Gaia Parenting" },
+      { property: "og:title", content: "Kelas Perawatan Bayi Baru Lahir (Offline) | Gaia Parenting" },
       {
         property: "og:description",
         content:
-          "Kelas offline praktik bersama dokter & bidan — siapkan diri menyambut si kecil, jadwal Oktober–Desember 2026 di Jabodetabek, Bandung, dan Surabaya.",
+          "Kelas offline praktik bareng dokter & bidan. Siapin diri menyambut si kecil, jadwal Oktober–Desember 2026 di Jabodetabek, Bandung, dan Surabaya.",
       },
       { property: "og:url", content: "https://kelas.gaiaparenting.com/kelas-newborn-care-offline" },
       { property: "og:type", content: "article" },

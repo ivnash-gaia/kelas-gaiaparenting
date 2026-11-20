@@ -21,5 +21,5 @@ export const NEWBORN_CARE_SURABAYA_EVENT: EventData = {
     return loc.includes("surabaya") || loc.includes("sidoarjo");
   }),
   venue:
-    "Tersedia di Surabaya — Mitra Keluarga & National Hospital. Lokasi spesifik tertera di tiap jadwal.",
+    "Tersedia di Surabaya (Mitra Keluarga & National Hospital). Lokasi spesifik tertera di tiap jadwal.",
 };

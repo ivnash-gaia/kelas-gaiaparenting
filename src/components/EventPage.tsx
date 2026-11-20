@@ -160,7 +160,7 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
     scheduleByCity[0]?.city ?? "Jabodetabek",
   );
 
-  const contentName = EVENT.heroTitle.replace(/<[^>]+>/g, "").trim();
+  const contentName = EVENT.pixelName ?? EVENT.heroTitle.replace(/<[^>]+>/g, "").trim();
   const priceValue = parsePriceIDR(EVENT.priceNow);
 
   const handleCheckoutClick = () => {
@@ -312,7 +312,7 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
           <Eyebrow>Yang Akan Kamu Kuasai</Eyebrow>
           <SectionTitle>Pulang kelas, kamu tidak lagi coba-coba</SectionTitle>
           <SectionSub>
-            Bukan sekadar teori — fokus pada hal yang benar-benar kamu hadapi di rumah.
+            Bukan sekadar teori. Fokusnya ke hal-hal yang beneran kamu hadapi di rumah.
           </SectionSub>
           <div className="flex flex-col gap-2.5">
             {EVENT.learn.map((l) => (
@@ -335,7 +335,7 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
         <section className="reveal px-5 pb-11">
           <Eyebrow>Kurikulum Lengkap</Eyebrow>
           <SectionTitle>Mau lihat detail tiap sesi?</SectionTitle>
-          <SectionSub>Semua materi ada di sini — buka kalau kamu ingin tahu lebih dalam.</SectionSub>
+          <SectionSub>Semua materi ada di sini. Buka aja kalau kamu mau tahu lebih dalam.</SectionSub>
           <Accordion
             type="single"
             collapsible
@@ -446,7 +446,7 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
             Tim yang benar-benar paham
           </h2>
           <p className="mb-5 text-[14.5px] text-primary-foreground/75">
-            Materi berbasis ilmu kesehatan & psikologi — disesuaikan konteks keluarga Indonesia.
+            Materi berbasis ilmu kesehatan & psikologi, disesuaikan dengan konteks keluarga Indonesia.
           </p>
           <div className="flex flex-col gap-2.5">
             {EVENT.instructor.map((i) => (

@@ -8,7 +8,7 @@ export const NEWBORN_CARE_OFFLINE_EVENT: EventData = {
   heroTitle:
     'Sebentar Lagi Si Kecil Lahir, <em class="font-serif-em text-primary">Sudah Siap Merawatnya</em> di Hari Pertama?',
   heroLead:
-    "Banyak orang tua baru pulang dari rumah sakit dengan bayi di tangan — namun belum pernah diajarkan cara merawatnya.",
+    "Banyak orang tua baru pulang dari rumah sakit sambil gendong bayi, tapi belum pernah diajarkan cara merawatnya.",
 
   heroFacts: [
     { k: "Format", v: "Offline · Praktik" },
@@ -33,19 +33,19 @@ export const NEWBORN_CARE_OFFLINE_EVENT: EventData = {
     href: "https://wa.me/6281219596828?text=Halo%20Gaia%2C%20saya%20mau%20tanya%20tentang%20Kelas%20Newborn%20Offline",
   },
   heroTrust: "Kuota tiap sesi terbatas · Bisa reschedule",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
-    'Persiapan terbaik menjadi orang tua dimulai <em class="font-serif-em text-accent">sebelum bayi lahir.</em> Pelajari langsung cara merawat bayi baru lahir bersama dokter kandungan, bidan bersertifikat, dan konselor laktasi — dari persiapan persalinan, praktik merawat bayi, hingga persiapan menyusui.',
+    'Persiapan terbaik menjadi orang tua dimulai <em class="font-serif-em text-accent">sebelum bayi lahir.</em> Pelajari langsung cara merawat bayi baru lahir bersama dokter kandungan, bidan bersertifikat, dan konselor laktasi, mulai dari persiapan persalinan, praktik merawat bayi, sampai persiapan menyusui.',
 
   learn: [
     { ico: "🩺", h: "Kenali tanda bahaya sejak dini", p: "Tahu kapan bayi baik-baik saja, dan kapan harus segera ke rumah sakit." },
-    { ico: "🛁", h: "Memandikan & merawat tali pusat", p: "Dengan tenang dan benar — langkah yang sering bikin orang tua baru panik." },
+    { ico: "🛁", h: "Memandikan & merawat tali pusat", p: "Dengan tenang dan benar. Ini langkah yang sering bikin orang tua baru panik." },
     { ico: "🤱", h: "Menyusui sejak hari pertama", p: "Posisi, perlekatan, dan membaca tanda cukup ASI pada bayi." },
     { ico: "🫄", h: "Siap menghadapi persalinan", p: "Tanda persalinan, teknik napas, dan kapan waktunya ke rumah sakit." },
     { ico: "🧣", h: "Membedong dengan aman", p: "Teknik yang menenangkan bayi tanpa mengganggu tumbuh kembang pinggulnya." },
-    { ico: "🎒", h: "Menyiapkan hospital bag", p: "Daftar lengkap keperluan Ibu, Ayah, dan Bayi — tanpa kelebihan beli." },
+    { ico: "🎒", h: "Menyiapkan hospital bag", p: "Daftar lengkap keperluan Ibu, Ayah, dan Bayi, biar nggak kelebihan beli." },
   ],
 
   curriculum: [
@@ -89,12 +89,12 @@ export const NEWBORN_CARE_OFFLINE_EVENT: EventData = {
 
   diff: [
     { h: "Praktik langsung dikoreksi pakar", p: "Bukan menonton. Ayah Bunda memegang, mencoba, dan langsung diperbaiki tenaga kesehatan berpengalaman." },
-    { h: "Alat praktik lengkap", p: "Boneka phantom bayi, set bedong, dan pakaian — semua sudah disiapkan untuk Ayah Bunda pakai di kelas." },
+    { h: "Alat praktik lengkap", p: "Boneka phantom bayi, set bedong, dan pakaian, semuanya sudah disiapkan buat Ayah Bunda pakai di kelas." },
     { h: "Direkam untuk ditonton ulang", p: "Tak perlu takut lupa. Setiap sesi praktik direkam dan bisa Ayah Bunda tonton ulang di rumah." },
     { h: "Tanya jawab pakar", p: "Ayah Bunda dapat bertanya langsung mengenai persiapan kelahiran, laktasi, dan perawatan bayi." },
   ],
   diffEyebrow: "Kenapa Kelas Offline",
-  diffTitle: "Kamu praktik langsung — bukan cuma menonton",
+  diffTitle: "Kamu praktik langsung, bukan cuma nonton",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [
@@ -132,7 +132,7 @@ export const NEWBORN_CARE_OFFLINE_EVENT: EventData = {
     { month: "Desember 2026", d: "Sabtu, 19 Desember 2026", t: "08.30 – 12.00 WIB", loc: "Bandung", status: "open" },
   ],
   venue:
-    "Tersedia di Jabodetabek (Jakarta, Bekasi, Depok, BSD, Bintaro), Bandung, dan Surabaya. Lokasi spesifik tertera di tiap jadwal — untuk Desember, lokasi masih level area/kota dan akan dikonfirmasi (dapat berubah sewaktu-waktu).",
+    "Tersedia di Jabodetabek (Jakarta, Bekasi, Depok, BSD, Bintaro), Bandung, dan Surabaya. Lokasi spesifik tertera di tiap jadwal. Untuk Desember, lokasi masih level area/kota dan akan dikonfirmasi (dapat berubah sewaktu-waktu).",
 
   instructor: [
     { ico: "👩‍⚕️", name: "dr. Aviasti Pratiwi A, Sp.OG", role: "Dokter Spesialis Obstetri & Ginekologi · Bandung", bio: "Anggota Ikatan Dokter Indonesia (IDI) dan Perkumpulan Obstetri & Ginekologi Indonesia (POGI)." },
@@ -184,9 +184,9 @@ export const NEWBORN_CARE_OFFLINE_EVENT: EventData = {
 
   faq: [
     { q: "Apakah suami wajib ikut?", a: "Sangat disarankan. Harga sudah untuk pasangan, dan banyak praktik (memandikan, bedong) jauh lebih ringan bila Ayah ikut menguasainya. Namun jika berhalangan, Bunda tetap bisa hadir sendiri atau bersama pendamping lain." },
-    { q: "Usia kehamilan berapa yang ideal ikut?", a: "Paling nyaman di trimester ketiga (28 minggu ke atas), saat persiapan persalinan terasa relevan. Tapi trimester kedua pun boleh — ilmunya tetap terpakai." },
+    { q: "Usia kehamilan berapa yang ideal ikut?", a: "Paling nyaman di trimester ketiga (28 minggu ke atas), saat persiapan persalinan terasa relevan. Trimester kedua juga boleh kok, ilmunya tetap kepakai." },
     { q: "Saya sudah melahirkan, masih boleh ikut?", a: "Boleh. Materi perawatan bayi dan menyusui tetap sangat berguna untuk bayi usia beberapa minggu pertama." },
     { q: "Bagaimana kalau saya berhalangan di hari kelas?", a: "Peserta bisa reschedule gratis ke jadwal berikutnya yang tersedia. Cukup kabari admin sebelum hari pelaksanaan." },
-    { q: "Apa yang perlu saya bawa?", a: "Cukup diri Ayah Bunda saja. Semua alat praktik — boneka phantom, set bedong, pakaian bayi — sudah kami sediakan." },
+    { q: "Apa yang perlu saya bawa?", a: "Cukup diri Ayah Bunda aja. Semua alat praktik (boneka phantom, set bedong, pakaian bayi) sudah kami sediakan." },
   ],
 };

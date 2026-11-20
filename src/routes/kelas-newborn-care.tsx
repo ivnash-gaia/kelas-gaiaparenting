@@ -5,17 +5,17 @@ import { NEWBORN_CARE_EVENT } from "@/lib/event-newborn-care";
 export const Route = createFileRoute("/kelas-newborn-care")({
   head: () => ({
     meta: [
-      { title: "Kelas Perawatan Bayi Baru Lahir Advance — Gaia Parenting" },
+      { title: "Kelas Perawatan Bayi Baru Lahir Advance | Gaia Parenting" },
       {
         name: "description",
         content:
-          "Kelas online 4 sesi via Zoom pada 24 & 26–28 Oktober 2026 — persiapan persalinan SC, newborn checklist, sleep training dasar, bonding, dan stimulasi newborn.",
+          "Kelas online 4 sesi via Zoom pada 24 & 26–28 Oktober 2026. Isinya persiapan persalinan SC, newborn checklist, sleep training dasar, bonding, dan stimulasi newborn.",
       },
-      { property: "og:title", content: "Kelas Perawatan Bayi Baru Lahir Advance — Gaia Parenting" },
+      { property: "og:title", content: "Kelas Perawatan Bayi Baru Lahir Advance | Gaia Parenting" },
       {
         property: "og:description",
         content:
-          "Kelas Newborn Advance, 24 & 26–28 Oktober 2026 — persiapan persalinan SC, newborn checklist, sleep training dasar, bonding, dan stimulasi bersama pakar.",
+          "Kelas Newborn Advance, 24 & 26–28 Oktober 2026. Isinya persiapan persalinan SC, newborn checklist, sleep training dasar, bonding, dan stimulasi bareng pakar.",
       },
       { property: "og:url", content: "https://kelas.gaiaparenting.com/kelas-newborn-care" },
       { property: "og:type", content: "article" },

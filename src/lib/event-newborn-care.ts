@@ -32,7 +32,7 @@ export const NEWBORN_CARE_EVENT: EventData = {
     href: "https://wa.me/6281219596828?text=Halo%20Gaia%2C%20saya%20mau%20tanya%20tentang%20Kelas%20Newborn%20Online",
   },
   heroTrust: "Kuota tiap sesi terbatas · Bisa reschedule",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
@@ -47,7 +47,7 @@ export const NEWBORN_CARE_EVENT: EventData = {
     {
       ico: "🛁",
       h: "Newborn Checklist: Yang Perlu Dipersiapkan, Dibeli, dan Belum Perlu",
-      p: "Panduan memilih perlengkapan newborn yang benar-benar dibutuhkan — hospital bag, perlengkapan bayi, hingga skincare yang aman.",
+      p: "Panduan memilih perlengkapan newborn yang beneran dibutuhkan: hospital bag, perlengkapan bayi, sampai skincare yang aman.",
     },
     {
       ico: "😴",
@@ -82,7 +82,7 @@ export const NEWBORN_CARE_EVENT: EventData = {
         "Hospital Bag: untuk Ibu, Bayi, dan Ayah",
         "Peralatan yang wajib dan optional",
         "Perawatan pakaian & perlengkapan bayi",
-        "Skincare, popok, tisu basah — mana yang aman?",
+        "Skincare, popok, tisu basah: mana yang aman?",
       ],
     },
     {
@@ -125,7 +125,7 @@ export const NEWBORN_CARE_EVENT: EventData = {
     },
   ],
   diffEyebrow: "Kenapa Kelas Ini Beda",
-  diffTitle: "Bukan sekadar nonton — kamu bisa langsung bertanya & dikoreksi",
+  diffTitle: "Bukan cuma nonton, kamu bisa langsung tanya & dikoreksi",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [

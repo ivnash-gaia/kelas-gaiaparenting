@@ -7,14 +7,14 @@ import privacyMd from "@/content/privacy-policy.md?raw";
 export const Route = createFileRoute("/privacy-policy")({
   head: () => ({
     meta: [
-      { title: "Kebijakan Privasi — Gaia Parenting" },
+      { title: "Kebijakan Privasi | Gaia Parenting" },
       {
         name: "description",
         content:
           "Kebijakan privasi Gaia Parenting (PT Caredise Rawat Bangsa): data yang kami kumpulkan, tujuan penggunaan, hak Anda, dan dasar hukum sesuai UU PDP.",
       },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "Kebijakan Privasi — Gaia Parenting" },
+      { property: "og:title", content: "Kebijakan Privasi | Gaia Parenting" },
       { property: "og:type", content: "article" },
       { property: "og:url", content: "https://kelas.gaiaparenting.com/privacy-policy" },
     ],

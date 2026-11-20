@@ -38,6 +38,7 @@ Built from the brief "Course GTM — Brief, Kreatif & Panduan Campaign". All cop
 - **Do not reintroduce Lovable asset pointers** (`*.asset.json`, `/__l5e/assets-v1/...`). Put images in `public/og/` (social previews, poster) or `src/assets/` (imported in code).
 - **Lockfile is `package-lock.json`** (public npm registry). The old `bun.lock` pointed at Lovable's private package cache and cannot install elsewhere. `.npmrc` sets `legacy-peer-deps=true`; keep it, or `npm ci` fails.
 - **`nitro: { preset: "cloudflare-module" }` is pinned on purpose.** Unpinned, Nitro switches layout when it detects Cloudflare Pages and the output folder changes.
+- **Meta Pixel event name = the event's `heroTitle` (tags stripped).** Rewording a headline silently renames the event in Meta Ads reporting. If you change a live headline, set `pixelName` in that event's data module to the old text (see `event-laktasi.ts`). Real participant testimonials are quotes: do not edit their wording.
 - `public/404.html` is the not-found page. After a deploy, open a made-up URL and confirm it shows.
 - `/test-page` is a leftover Lovable test route and is still published. Remove it from `src/routes/` and `PAGES` when ready.
 - Tests: `bun test src/lib` (pricing and schedule checks). Typecheck: `npx tsc --noEmit`.

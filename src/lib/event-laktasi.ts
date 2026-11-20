@@ -5,8 +5,9 @@ export const LAKTASI_EVENT: EventData = {
   topbarTag: "Kelas Online",
 
   heroTag: "Khusus Ibu Hamil & Ibu Menyusui",
+  pixelName: "Tidak semua ibu langsung bisa menyusui — tapi semua ibu bisa belajar.", // = the previous headline, keeps Meta event name stable
   heroTitle:
-    'Tidak semua ibu langsung bisa menyusui — tapi <em class="font-serif-em text-primary">semua ibu bisa belajar.</em>',
+    'Tidak semua ibu langsung bisa menyusui, tapi <em class="font-serif-em text-primary">semua ibu bisa belajar.</em>',
   heroLead:
     "Pelajari teknik menyusui yang benar agar ibu lebih percaya diri dan bayi mendapatkan ASI secara optimal sejak hari pertama.",
 
@@ -32,7 +33,7 @@ export const LAKTASI_EVENT: EventData = {
     href: "https://wa.me/6281219596828?text=Halo%20Gaia%2C%20saya%20mau%20tanya%20tentang%20Kelas%20Laktasi",
   },
   heroTrust: "Kuota tiap sesi terbatas · Bisa reschedule",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
@@ -120,7 +121,7 @@ export const LAKTASI_EVENT: EventData = {
     },
   ],
   diffEyebrow: "Kenapa Kelas Ini Beda",
-  diffTitle: "Bukan sekadar nonton — kamu bisa langsung bertanya & dipandu konselor",
+  diffTitle: "Bukan cuma nonton, kamu bisa langsung tanya & dipandu konselor",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [

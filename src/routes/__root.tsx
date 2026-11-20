@@ -85,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Kelas Gaia Parenting — Direktori Kelas Online & Offline" },
+      { title: "Kelas Gaia Parenting | Direktori Kelas Online & Offline" },
       { name: "description", content: "Direktori kelas parenting Gaia berbasis ilmu kesehatan & psikologi untuk calon orang tua dan orang tua baru di Indonesia." },
       { name: "author", content: "Gaia Parenting" },
       { property: "og:type", content: "website" },

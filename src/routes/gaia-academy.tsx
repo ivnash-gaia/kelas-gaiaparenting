@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { ACADEMY_FAQ, ACADEMY_OFFER, ACADEMY_STAGES } from '@/lib/academy-data';
 import garden from '@/assets/academy-garden.jpg';
 
-const title = 'Gaia Academy — Belajar Parenting Pelan-pelan, dari Sumber yang Jelas';
+const title = 'Gaia Academy | Belajar Parenting Pelan-pelan, dari Sumber yang Jelas';
 const description = 'Teman belajar di 1.000 hari pertama: kehamilan, bayi baru lahir, dan batita. Microlesson singkat, Cek Kesiapan, Peta Belajar, dan Parent’s Board. Rp49.000.';
 export const Route = createFileRoute('/gaia-academy')({
   head: () => ({
@@ -57,7 +57,7 @@ function AcademyPage() {
   return <div className="academy-page min-h-screen" lang="id">
     <header className="sticky top-0 z-30 border-b border-border bg-academy-sky/95 backdrop-blur-sm">
       <div className="mx-auto flex min-h-20 max-w-[1100px] items-center justify-between gap-3 px-5">
-        <Link to="/" className="flex items-center gap-2 text-academy-rose" aria-label="Gaia Academy — kembali ke daftar kelas">
+        <Link to="/" className="flex items-center gap-2 text-academy-rose" aria-label="Gaia Academy, kembali ke daftar kelas">
           <Sprout className="size-8 shrink-0" /><span className="academy-heading text-2xl font-extrabold leading-none">gaia <span className="block text-xs font-bold">ACADEMY</span></span>
         </Link>
         <nav className="flex items-center gap-2" aria-label="Navigasi Academy">
@@ -113,7 +113,7 @@ function AcademyPage() {
 
     <section className="border-y border-border bg-academy-rose-soft px-5 py-14"><div className="mx-auto max-w-[750px] text-center">
       <BookOpen className="mx-auto mb-4 size-8 text-academy-rose" /><h2 className="text-3xl font-extrabold">Belajar dari sumber yang jelas</h2>
-      <p className="mt-5 leading-relaxed">Materi disusun dari Buku KIA dan rujukan ilmiah. Informasi kesehatan membantu kamu memahami konteks dan menyiapkan pertanyaan untuk tenaga kesehatan—bukan menentukan diagnosis sendiri.</p>
+      <p className="mt-5 leading-relaxed">Materi disusun dari Buku KIA dan rujukan ilmiah. Informasi kesehatan membantu kamu memahami konteks dan menyiapkan pertanyaan untuk tenaga kesehatan, bukan untuk menentukan diagnosis sendiri.</p>
       <p className="mt-5 text-sm font-extrabold text-academy-rose">Gaia Academy bukan pengganti dokter.</p>
     </div></section>
 

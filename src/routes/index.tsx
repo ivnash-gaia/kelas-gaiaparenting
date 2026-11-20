@@ -13,17 +13,17 @@ import { GTM_OFFER } from "@/lib/gtm-data";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Kelas Gaia Parenting — Direktori Kelas Online & Offline" },
+      { title: "Kelas Gaia Parenting | Direktori Kelas Online & Offline" },
       {
         name: "description",
         content:
-          "Pilih kelas parenting Gaia: MPASI, perawatan newborn, persiapan persalinan. Dibimbing dokter & pakar — online via Zoom maupun offline di Jakarta.",
+          "Pilih kelas parenting Gaia: MPASI, perawatan newborn, persiapan persalinan. Dibimbing dokter & pakar, ada yang online via Zoom, ada juga yang offline di Jakarta.",
       },
-      { property: "og:title", content: "Kelas Gaia Parenting — Direktori Kelas Online & Offline" },
+      { property: "og:title", content: "Kelas Gaia Parenting | Direktori Kelas Online & Offline" },
       {
         property: "og:description",
         content:
-          "Pilih kelas parenting Gaia: MPASI, perawatan newborn, persiapan persalinan. Dibimbing dokter & pakar — online via Zoom maupun offline di Jakarta.",
+          "Pilih kelas parenting Gaia: MPASI, perawatan newborn, persiapan persalinan. Dibimbing dokter & pakar, ada yang online via Zoom, ada juga yang offline di Jakarta.",
       },
       { property: "og:url", content: "https://kelas.gaiaparenting.com/" },
       { property: "og:type", content: "website" },
@@ -55,7 +55,7 @@ const EVENTS: EventItem[] = [
     to: "/kelas-mpasi-online",
     tag: "Kelas Online · Praktik",
     title: "Kelas Intensif MPASI 7 Hari",
-    desc: "Kupas tuntas persiapan MPASI menu lengkap — dari panduan WHO/IDAI sampai koreksi tekstur langsung dari dokter.",
+    desc: "Kupas tuntas persiapan MPASI menu lengkap, dari panduan WHO/IDAI sampai koreksi tekstur langsung dari dokter.",
     facts: [
       { k: "Format", v: "Online · Zoom" },
       { k: "Durasi", v: "7 Sesi · ±7 jam" },
@@ -71,7 +71,7 @@ const EVENTS: EventItem[] = [
     to: "/kelas-newborn-care",
     tag: "Kelas Online",
     title: "Kelas Perawatan Bayi Baru Lahir Advance",
-    desc: "Persiapan persalinan SC, newborn checklist, pijat & tummy time, sampai sleep training dasar — bersama pakar.",
+    desc: "Persiapan persalinan SC, newborn checklist, pijat & tummy time, sampai sleep training dasar, bareng pakar.",
     facts: [
       { k: "Format", v: "Online · Zoom" },
       { k: "Durasi", v: "4 Sesi · ±4 jam" },
@@ -103,7 +103,7 @@ const EVENTS: EventItem[] = [
     to: "/kelas-newborn-care-offline",
     tag: "Kelas Offline · Praktik",
     title: "Kelas Perawatan Bayi Baru Lahir (Offline)",
-    desc: "Praktik langsung untuk pasangan calon orang tua — persiapan persalinan, merawat bayi, dan menyusui bersama dokter & bidan.",
+    desc: "Praktik langsung buat pasangan calon orang tua: persiapan persalinan, merawat bayi, dan menyusui bareng dokter & bidan.",
     facts: [
       { k: "Format", v: "Offline · Praktik" },
       { k: "Durasi", v: "3 Sesi · ±6 jam" },
@@ -118,8 +118,8 @@ const EVENTS: EventItem[] = [
     slug: "newborn-care-offline-surabaya",
     to: "/kelas-newborn-care-offline-surabaya",
     tag: "Kelas Offline · Surabaya",
-    title: "Kelas Perawatan Bayi Baru Lahir (Offline) — Surabaya",
-    desc: "Khusus Surabaya — praktik langsung di Mitra Keluarga & National Hospital, dibimbing dokter & bidan berpengalaman.",
+    title: "Kelas Perawatan Bayi Baru Lahir (Offline) Surabaya",
+    desc: "Khusus Surabaya. Praktik langsung di Mitra Keluarga & National Hospital, dibimbing dokter & bidan berpengalaman.",
     facts: [
       { k: "Format", v: "Offline · Praktik" },
       { k: "Durasi", v: "3 Sesi · ±6 jam" },
@@ -134,8 +134,8 @@ const EVENTS: EventItem[] = [
     slug: "laktasi-online",
     to: "/kelas-laktasi-online",
     tag: "Kelas Online",
-    title: "Kelas Laktasi Online — Dukung ASI Eksklusif",
-    desc: "Belajar teknik menyusui yang benar, atasi slow weight gain, sampai ASI perah untuk ibu bekerja — bersama konselor laktasi.",
+    title: "Kelas Laktasi Online: Dukung ASI Eksklusif",
+    desc: "Belajar teknik menyusui yang benar, atasi slow weight gain, sampai ASI perah buat ibu bekerja, bareng konselor laktasi.",
     facts: [
       { k: "Format", v: "Online · Zoom" },
       { k: "Durasi", v: "4 Sesi · ±4 jam" },
@@ -201,7 +201,7 @@ function Directory() {
             Kelas Gaia Parenting
           </div>
           <h1 className="font-display mb-3 text-[34px] font-semibold leading-[1.1] text-brand-orange-deep md:text-[42px]">
-            Belajar jadi orang tua —{" "}
+            Belajar jadi orang tua,{" "}
             <em className="font-serif-em text-primary">tanpa coba-coba.</em>
           </h1>
           <p className="max-w-[60ch] text-[15.5px] leading-relaxed text-ink-soft">

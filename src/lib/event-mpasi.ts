@@ -33,11 +33,11 @@ export const MPASI_EVENT: EventData = {
     href: "https://wa.me/6281219596828?text=Halo%20Gaia%2C%20saya%20mau%20tanya%20tentang%20Kelas%20MPASI",
   },
   heroTrust: "Kuota tiap sesi terbatas",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
-    'Fase MPASI sering jadi momen yang membingungkan — mulai dari menu pertama, mengenali alergi, sampai memahami tekstur yang sesuai usia. Lewat kelas ini, Ayah Bunda belajar bertahap tentang nutrisi bayi, menyusun menu seimbang, dan <em class="font-serif-em text-accent">membangun pengalaman makan yang menyenangkan</em> bagi Si Kecil.',
+    'Fase MPASI sering jadi momen yang membingungkan, mulai dari menu pertama, mengenali alergi, sampai memahami tekstur yang sesuai usia. Lewat kelas ini, Ayah Bunda belajar bertahap tentang nutrisi bayi, menyusun menu seimbang, dan <em class="font-serif-em text-accent">membangun pengalaman makan yang menyenangkan</em> bagi Si Kecil.',
 
   learn: [
     {
@@ -62,7 +62,7 @@ export const MPASI_EVENT: EventData = {
     },
     {
       ico: "😋",
-      h: "Happy Eating — pemberian makan minim trauma",
+      h: "Happy Eating: pemberian makan minim trauma",
       p: "Cara kreatif dan seru mengenalkan makanan supaya pengalaman makan menyenangkan.",
     },
     {
@@ -161,7 +161,7 @@ export const MPASI_EVENT: EventData = {
     },
   ],
   diffEyebrow: "Kenapa Kelas Ini Beda",
-  diffTitle: "Bukan sekadar nonton — kamu bisa langsung bertanya & dikoreksi",
+  diffTitle: "Bukan cuma nonton, kamu bisa langsung tanya & dikoreksi",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [

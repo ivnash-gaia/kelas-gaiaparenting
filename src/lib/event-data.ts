@@ -9,6 +9,8 @@ export type EventData = {
   topbarTag: string;
   heroTag: string;
   heroTitle: string;
+  /** Meta Pixel content_name. Defaults to heroTitle without tags; set it when a headline is reworded so ad reporting keeps the old event name. */
+  pixelName?: string;
   heroLead: string;
   heroFacts: { k: string; v: string }[];
   heroImage?: string;
@@ -42,7 +44,7 @@ export const EVENT: EventData = {
   topbarTag: "Kelas Offline",
 
   heroTag: "Khusus Ibu Hamil & Orang Tua Baru",
-  heroTitle: 'Rawat bayi baru lahir dengan <em class="font-serif-em text-primary">tenang</em> — tanpa coba-coba',
+  heroTitle: 'Rawat bayi baru lahir dengan <em class="font-serif-em text-primary">tenang</em>, tanpa coba-coba',
   heroLead:
     "Kelas praktik langsung untuk calon orang tua. Kamu pulang dengan keterampilan nyata, bukan sekadar catatan.",
 
@@ -62,19 +64,19 @@ export const EVENT: EventData = {
   ctaPrimary: { label: "Daftar & Amankan Kursi", href: "#checkout" },
   ctaSecondary: { label: "Tanya dulu via WhatsApp", href: "#konsultasi" },
   heroTrust: "Kuota tiap sesi terbatas · Bisa reschedule",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
-    'Banyak praktik merawat bayi diwariskan turun-temurun — sebagian baik, sebagian <em class="font-serif-em text-accent">berisiko tanpa kita sadari.</em> Kelas ini membantumu memilah mana yang benar secara medis, tanpa menggurui keluargamu.',
+    'Banyak praktik merawat bayi diwariskan turun-temurun. Sebagian baik, sebagian <em class="font-serif-em text-accent">berisiko tanpa kita sadari.</em> Kelas ini membantumu memilah mana yang benar secara medis, tanpa menggurui keluargamu.',
 
   learn: [
     { ico: "🩺", h: "Kenali tanda bahaya sejak dini", p: "Tahu kapan bayi baik-baik saja, dan kapan harus segera ke rumah sakit." },
-    { ico: "🛁", h: "Memandikan & merawat tali pusat", p: "Dengan tenang dan benar — langkah yang sering bikin orang tua baru panik." },
+    { ico: "🛁", h: "Memandikan & merawat tali pusat", p: "Dengan tenang dan benar. Ini langkah yang sering bikin orang tua baru panik." },
     { ico: "🤱", h: "Menyusui sejak hari pertama", p: "Posisi, perlekatan, dan membaca tanda cukup ASI pada bayi." },
     { ico: "🫄", h: "Siap menghadapi persalinan", p: "Tanda persalinan, teknik napas, dan kapan waktunya ke rumah sakit." },
     { ico: "🧣", h: "Membedong dengan aman", p: "Teknik yang menenangkan bayi tanpa mengganggu tumbuh kembang pinggulnya." },
-    { ico: "🎒", h: "Menyiapkan hospital bag", p: "Daftar lengkap keperluan Ibu, Ayah, dan Bayi — tanpa kelebihan beli." },
+    { ico: "🎒", h: "Menyiapkan hospital bag", p: "Daftar lengkap keperluan Ibu, Ayah, dan Bayi, biar nggak kelebihan beli." },
   ],
 
   curriculum: [
@@ -118,11 +120,11 @@ export const EVENT: EventData = {
 
   diff: [
     { h: "Praktik langsung dikoreksi pakar", p: "Bukan menonton. Kamu memegang, mencoba, dan langsung diperbaiki tim Newborn Care." },
-    { h: "Alat praktik disediakan", p: "Boneka phantom bayi, set bedong, dan pakaian — semua siap untukmu pakai di kelas." },
+    { h: "Alat praktik disediakan", p: "Boneka phantom bayi, set bedong, dan pakaian, semuanya siap kamu pakai di kelas." },
     { h: "Direkam untuk kamu tonton ulang", p: "Tak perlu takut lupa. Setiap sesi praktik direkam dan bisa kamu ulang di rumah." },
   ],
   diffEyebrow: "Kenapa Kelas Offline",
-  diffTitle: "Kamu praktik langsung — bukan cuma menonton",
+  diffTitle: "Kamu praktik langsung, bukan cuma nonton",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [
@@ -187,9 +189,9 @@ export const EVENT: EventData = {
 
   faq: [
     { q: "Apakah suami wajib ikut?", a: "Sangat disarankan. Harga sudah untuk pasangan, dan banyak praktik (memandikan, bedong) jauh lebih ringan bila Ayah ikut menguasainya. Namun jika berhalangan, Bunda tetap bisa hadir sendiri." },
-    { q: "Usia kehamilan berapa yang ideal ikut?", a: "Paling nyaman di trimester ketiga (28 minggu ke atas), saat persiapan persalinan terasa relevan. Tapi trimester kedua pun boleh — ilmunya tetap terpakai." },
+    { q: "Usia kehamilan berapa yang ideal ikut?", a: "Paling nyaman di trimester ketiga (28 minggu ke atas), saat persiapan persalinan terasa relevan. Trimester kedua juga boleh kok, ilmunya tetap kepakai." },
     { q: "Saya sudah melahirkan, masih boleh ikut?", a: "Boleh. Materi perawatan bayi dan menyusui tetap sangat berguna untuk bayi usia beberapa minggu pertama." },
     { q: "Bagaimana kalau saya berhalangan di hari kelas?", a: "Peserta bisa reschedule gratis ke jadwal berikutnya yang tersedia. Cukup kabari admin sebelum hari pelaksanaan." },
-    { q: "Apa yang perlu saya bawa?", a: "Cukup diri kamu. Semua alat praktik — boneka phantom, set bedong, pakaian bayi — sudah kami sediakan." },
+    { q: "Apa yang perlu saya bawa?", a: "Cukup diri kamu aja. Semua alat praktik (boneka phantom, set bedong, pakaian bayi) sudah kami sediakan." },
   ],
 };

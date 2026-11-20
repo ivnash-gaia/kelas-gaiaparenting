@@ -32,7 +32,7 @@ export const COUPLE_YOGA_EVENT: EventData = {
     href: "https://api.whatsapp.com/send/?phone=6281219596828&text=Halo+Gaia%2C+saya+mau+tanya+tentang+Kelas+Hari+Pertama+di+Rumah&type=phone_number&app_absent=0",
   },
   heroTrust: "Kuota terbatas untuk pendampingan personal",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:

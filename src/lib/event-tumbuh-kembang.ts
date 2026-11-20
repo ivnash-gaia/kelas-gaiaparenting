@@ -32,7 +32,7 @@ export const TUMBUH_KEMBANG_EVENT: EventData = {
     href: "https://wa.me/6281219596828?text=Halo%20Gaia%2C%20saya%20mau%20tanya%20tentang%20Kelas%20Tumbuh%20Kembang",
   },
   heroTrust: "Kuota tiap sesi terbatas · Bisa reschedule",
-  heroReassure: "Baca dulu — tidak perlu langsung daftar.",
+  heroReassure: "Baca dulu aja, nggak perlu langsung daftar.",
   heroScrollHint: "Lihat dulu apa yang kamu pelajari",
 
   bridge:
@@ -122,7 +122,7 @@ export const TUMBUH_KEMBANG_EVENT: EventData = {
     },
   ],
   diffEyebrow: "Kenapa Kelas Ini Beda",
-  diffTitle: "Bukan sekadar nonton — kamu bisa langsung bertanya & dikoreksi",
+  diffTitle: "Bukan cuma nonton, kamu bisa langsung tanya & dikoreksi",
   diffSub: "Hal yang tidak bisa kamu dapat dari video atau artikel di internet.",
 
   schedule: [
