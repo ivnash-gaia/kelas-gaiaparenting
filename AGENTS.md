@@ -1,0 +1,6 @@
+# Project rules
+- Gaia Academy is a standalone public leaf route with scoped garden tokens and a browser-safe offer module; this preserves existing class styling and prevents unconfirmed payment terms from becoming promises.
+- Event updates belong in each event's data module, its existing leaf metadata, and its directory entry; preserve existing class URLs so shared links remain valid.
+- Event configuration regression tests use Bun and evaluate configuration without the Vite image loader so pricing and schedule requirements can be checked independently.
+- Uploaded class posters are plain files in `public/og/`, referenced by one shared constant (see `src/lib/couple-yoga-poster.ts`) across event data, directory, and leaf social metadata so all surfaces display the same poster. They no longer use Lovable Assets pointers (`*.asset.json`); those only resolve on Lovable's hosting.
+- Hosting is Cloudflare Pages, not Lovable: every page is pre-rendered to static HTML at build time. A new page must be added to `PAGES` in `vite.config.ts`, or it is not published. See `CLAUDE.md`.
