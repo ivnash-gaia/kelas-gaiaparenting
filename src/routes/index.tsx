@@ -167,7 +167,7 @@ const EVENTS: EventItem[] = [
     to: "/kelas-gtm-online",
     tag: "Kelas Online · On-demand",
     title: GTM_OFFER.name,
-    desc: "Anak lepeh, emut, atau tutup mulut saat makan? Pahami proses belajar makan lewat video singkat bersama dr. Frecillia Regina, Sp.A, IBCLC.",
+    desc: "Si kecil lepeh, emut, atau tutup mulut pas makan? Pahami proses belajar makannya lewat video singkat bareng dr. Frecillia Regina, Sp.A, IBCLC.",
     facts: [
       { k: "Format", v: "Video on-demand" },
       { k: "Durasi", v: `${GTM_OFFER.totalVideos} Video · ${GTM_OFFER.duration}` },

@@ -6,6 +6,7 @@ import {
   Clock,
   Gift,
   MessageCircle,
+  Play,
   Repeat,
   ShieldAlert,
   Snowflake,
@@ -169,8 +170,132 @@ function Quote({ text, light = false, attribution = true }: { text: string; ligh
   );
 }
 
+/**
+ * Click-to-play YouTube preview. Only a thumbnail is on the page until the visitor taps, so the YouTube player
+ * (heavy) does not load with the page. Tapping = a user gesture, so the video starts with sound.
+ */
+function YoutubePreview({ id, aspect }: { id: string; aspect: string }) {
+  const [playing, setPlaying] = useState(false);
+  const [thumb, setThumb] = useState<"maxresdefault" | "hqdefault">("maxresdefault");
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // maxresdefault does not exist for every video (YouTube answers 404 with a tiny placeholder). The onError
+  // below covers the normal case; this covers an image that already failed before React hydrated.
+  useEffect(() => {
+    const el = imgRef.current;
+    if (el && el.complete && el.naturalWidth <= 120) setThumb("hqdefault");
+  }, []);
+
+  return (
+    <div
+      className="relative w-full overflow-hidden rounded-[28px] border border-border bg-primary-deep shadow-[0_24px_50px_-30px] shadow-primary/70"
+      style={{ aspectRatio: aspect }}
+    >
+      {playing ? (
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&playsinline=1&cc_load_policy=1&hl=id`}
+          title="Preview Kelas GTM bersama dr. Frecillia Regina"
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full"
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          aria-label="Putar video preview kelas"
+          className="group absolute inset-0 block h-full w-full"
+        >
+          <img
+            ref={imgRef}
+            src={`https://i.ytimg.com/vi/${id}/${thumb}.jpg`}
+            alt=""
+            fetchPriority="high"
+            decoding="async"
+            onError={() => setThumb("hqdefault")}
+            className="h-full w-full object-cover"
+          />
+          <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
+          <span
+            aria-hidden="true"
+            className="absolute left-1/2 top-1/2 flex size-[68px] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-4 ring-white/70 transition group-hover:scale-105"
+          >
+            <Play className="ml-1 size-7 fill-current" />
+          </span>
+          <span className="absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 text-[11.5px] font-semibold text-white backdrop-blur">
+            Preview kelas
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLDivElement | null> }) {
   const a = GTM_ASSETS;
+  // With a landscape video the media sits between the headline and the buy button on mobile, so the button
+  // stays in the first screen. The taller poster/photo keeps the old order (button first, media below).
+  const mediaFirst = Boolean(a.previewYoutubeId);
+
+  const media = a.previewYoutubeId ? (
+    <YoutubePreview id={a.previewYoutubeId} aspect={a.previewAspect} />
+  ) : a.heroVideo ? (
+    <video
+      src={a.heroVideo}
+      poster={a.heroVideoPoster ?? undefined}
+      autoPlay
+      muted
+      loop
+      playsInline
+      controls
+      className="aspect-[4/5] w-full rounded-[28px] border border-border object-cover"
+    />
+  ) : a.heroPhoto ? (
+    <img
+      src={a.heroPhoto}
+      alt="Ibu menemani anak makan di meja makan"
+      width={1080}
+      height={1350}
+      fetchPriority="high"
+      className="aspect-[4/5] w-full rounded-[28px] border border-border object-cover"
+    />
+  ) : (
+    <div
+      className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-border bg-gradient-to-br from-accent/45 via-secondary to-primary/15 p-6 md:p-8"
+      role="img"
+      aria-label="Lepeh. Emut. Tutup mulut."
+    >
+      <div aria-hidden="true" className="absolute -right-20 -top-20 size-72 rounded-full border-[16px] border-gold/35" />
+      <div aria-hidden="true" className="absolute -right-8 -top-8 size-48 rounded-full border-[10px] border-primary/10" />
+      <div className="relative flex h-full flex-col justify-between">
+        <div aria-hidden="true" className="font-display text-[46px] font-semibold leading-[1.03] text-brand-orange-deep md:text-[56px]">
+          <div>Lepeh.</div>
+          <div>Emut.</div>
+          <div className="font-serif-em text-primary">Tutup mulut.</div>
+        </div>
+        <div className="flex items-center gap-3 rounded-2xl bg-card/90 p-3 shadow-sm backdrop-blur">
+          {a.doctorPhoto ? (
+            <img
+              src={a.doctorPhoto}
+              alt=""
+              width={44}
+              height={44}
+              className="size-11 flex-none rounded-full object-cover object-top"
+            />
+          ) : (
+            <span className="font-display flex size-11 flex-none items-center justify-center rounded-full bg-gold text-[16px] font-semibold text-foreground">
+              {GTM_DOCTOR.initials}
+            </span>
+          )}
+          <span className="min-w-0">
+            <span className="block text-[13.5px] font-bold leading-tight text-foreground">{GTM_DOCTOR.name}</span>
+            <span className="block text-[11.5px] leading-snug text-ink-soft">{GTM_DOCTOR.descriptor}</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <section className="relative overflow-hidden">
       <div
@@ -181,8 +306,8 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLDivElement | null> }) {
             "radial-gradient(120% 80% at 90% 0%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(90% 60% at 0% 100%, color-mix(in oklab, var(--primary) 10%, transparent), transparent 70%)",
         }}
       />
-      <div className={`${WRAP} relative py-9 md:grid md:grid-cols-2 md:items-center md:gap-12 md:py-16`}>
-        <div>
+      <div className={`${WRAP} relative flex flex-col py-9 md:grid md:grid-cols-2 md:gap-x-12 md:py-16`}>
+        <div className="order-1 md:col-start-1 md:row-start-1 md:self-end">
           <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-primary px-3.5 py-1.5 text-[11px] font-semibold tracking-wide text-primary-foreground">
             <span className="gaia-pulse h-1.5 w-1.5 rounded-full bg-accent" />
             Kelas online · Gerakan Tutup Mulut
@@ -193,6 +318,22 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLDivElement | null> }) {
           </h1>
           <p className="mt-4 text-[15.5px] text-ink-soft md:text-[17px]">
             Kelas online bersama <strong className="text-foreground">{GTM_DOCTOR.name}</strong>. {GTM_OFFER.totalVideos} video singkat yang bisa ditonton sambil nidurin si kecil.
+          </p>
+        </div>
+
+        <div
+          className={`${mediaFirst ? "order-2 mt-6" : "order-4 mt-8"} md:order-none md:col-start-2 md:row-span-2 md:row-start-1 md:mt-0 md:self-center`}
+        >
+          {media}
+        </div>
+
+        <div className="order-3 md:col-start-1 md:row-start-2 md:self-start">
+          <div ref={ctaRef} className="mt-6 md:max-w-[340px]">
+            <BuyButton className="w-full" />
+            <NoLinkNote />
+          </div>
+          <p className="font-serif-em mt-3 text-[12.5px] italic text-ink-soft">
+            Edukasi untuk orang tua, bukan pengganti konsultasi dokter.
           </p>
 
           <ul className="mt-5 flex flex-wrap gap-2 text-[12.5px] font-semibold text-foreground">
@@ -207,63 +348,6 @@ function Hero({ ctaRef }: { ctaRef: React.RefObject<HTMLDivElement | null> }) {
               </li>
             ))}
           </ul>
-
-          <div ref={ctaRef} className="mt-6 md:max-w-[340px]">
-            <BuyButton className="w-full" />
-            <NoLinkNote />
-          </div>
-          <p className="font-serif-em mt-3 text-[12.5px] italic text-ink-soft">
-            Edukasi untuk orang tua, bukan pengganti konsultasi dokter.
-          </p>
-        </div>
-
-        <div className="mt-8 md:mt-0">
-          {a.heroVideo ? (
-            <video
-              src={a.heroVideo}
-              poster={a.heroVideoPoster ?? undefined}
-              autoPlay
-              muted
-              loop
-              playsInline
-              controls
-              className="aspect-[4/5] w-full rounded-[28px] border border-border object-cover"
-            />
-          ) : a.heroPhoto ? (
-            <img
-              src={a.heroPhoto}
-              alt="Ibu menemani anak makan di meja makan"
-              width={1080}
-              height={1350}
-              fetchPriority="high"
-              className="aspect-[4/5] w-full rounded-[28px] border border-border object-cover"
-            />
-          ) : (
-            <div
-              className="relative aspect-[4/5] overflow-hidden rounded-[28px] border border-border bg-gradient-to-br from-accent/45 via-secondary to-primary/15 p-6 md:p-8"
-              role="img"
-              aria-label="Lepeh. Emut. Tutup mulut."
-            >
-              <div aria-hidden="true" className="absolute -right-20 -top-20 size-72 rounded-full border-[16px] border-gold/35" />
-              <div aria-hidden="true" className="absolute -right-8 -top-8 size-48 rounded-full border-[10px] border-primary/10" />
-              <div className="relative flex h-full flex-col justify-between">
-                <div aria-hidden="true" className="font-display text-[46px] font-semibold leading-[1.03] text-brand-orange-deep md:text-[56px]">
-                  <div>Lepeh.</div>
-                  <div>Emut.</div>
-                  <div className="font-serif-em text-primary">Tutup mulut.</div>
-                </div>
-                <div className="flex items-center gap-3 rounded-2xl bg-card/90 p-3 shadow-sm backdrop-blur">
-                  <span className="font-display flex size-11 flex-none items-center justify-center rounded-full bg-gold text-[16px] font-semibold text-foreground">
-                    {GTM_DOCTOR.initials}
-                  </span>
-                  <span className="min-w-0">
-                    <span className="block text-[13.5px] font-bold leading-tight text-foreground">{GTM_DOCTOR.name}</span>
-                    <span className="block text-[11.5px] leading-snug text-ink-soft">{GTM_DOCTOR.descriptor}</span>
-                  </span>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </section>
@@ -298,7 +382,7 @@ function Reframe() {
       <section className="bg-primary-deep text-primary-foreground">
         <div className={`${WRAP} py-12 md:grid md:grid-cols-2 md:items-center md:gap-12 md:py-16`}>
           <div>
-            <Eyebrow light>Reframe</Eyebrow>
+            <Eyebrow light>Tenang dulu, Bun</Eyebrow>
             <h2 className="font-display text-[30px] font-semibold leading-[1.12] md:text-[40px]">
               Bunda nggak salah. Bunda cuma belum dikasih <em className="font-serif-em text-accent">peta</em>.
             </h2>
@@ -351,16 +435,16 @@ function Insight() {
   return (
     <section className="bg-secondary">
       <div className={`${WRAP} py-12 md:py-16`}>
-        <Eyebrow>Insight utama kelas</Eyebrow>
+        <Eyebrow>Yang perlu Bunda tahu</Eyebrow>
         <H2>GTM bukan soal menu. Soal proses belajarnya.</H2>
         <p className="mt-3 max-w-[560px] text-[15px] leading-relaxed text-ink-soft">
-          Anak sedang <em className="font-serif-em text-foreground">belajar</em> makan, lewat tahapan sensori yang tersusun seperti piramida. Bunda tidak perlu jadi koki 10 menu; Bunda perlu paham prosesnya.
+          Anak lagi <em className="font-serif-em text-foreground">belajar</em> makan lewat tahapan sensori yang tersusun kayak piramida. Bunda nggak perlu jadi koki 10 menu, yang penting paham prosesnya.
         </p>
 
         <div className="mt-8 md:grid md:grid-cols-2 md:items-center md:gap-12">
           <div>
             <Pyramid levels={GTM_PYRAMID} />
-            <p className="mt-4 text-center text-[12px] text-ink-soft">Dari dasar ke atas: tiap tahap perlu cukup kuat sebelum naik.</p>
+            <p className="mt-4 text-center text-[12px] text-ink-soft">Naiknya dari bawah ya, Bun. Tiap tahap dikuatkan dulu sebelum lanjut ke atasnya.</p>
           </div>
           <div className="mt-9 md:mt-0">
             <div className="mb-8 rounded-2xl border-l-4 border-gold bg-card p-4 shadow-sm">
@@ -426,7 +510,7 @@ function Moments() {
       <div className="py-12 md:py-16">
         <div className={WRAP}>
           <Eyebrow>Yang jarang dibahas</Eyebrow>
-          <H2>Hal-hal spesifik yang dibahas di kelas</H2>
+          <H2>Sampai ke detail yang sering bikin bingung</H2>
           <p className="mt-3 text-[14px] text-ink-soft md:hidden">Geser untuk melihat semuanya →</p>
         </div>
         <ul
@@ -462,7 +546,7 @@ function Qna() {
         <Eyebrow>Video QnA</Eyebrow>
         <H2>{GTM_OFFER.qnaVideos} pertanyaan yang dijawab dokter</H2>
         <p className="mt-3 text-[15px] text-ink-soft">
-          Disusun dari pertanyaan nyata Bunda di komentar IG, webinar, konsultasi privat, dan komunitas Gaia.
+          Dari pertanyaan yang beneran sering Bunda tanyain di komentar IG, webinar, konsultasi privat, dan komunitas Gaia.
         </p>
         <ol className="mx-auto mt-7 flex max-w-[600px] flex-col gap-2.5">
           {GTM_QNA.map((q, i) => (
@@ -493,7 +577,7 @@ function Doctor() {
         <Eyebrow>Kenalan dengan narasumber</Eyebrow>
         <div className="mt-4 overflow-hidden rounded-[28px] border border-border bg-card md:grid md:grid-cols-[280px_1fr]">
           {photo ? (
-            <img src={photo} alt={GTM_DOCTOR.name} width={1080} height={1080} loading="lazy" className="aspect-square w-full object-cover" />
+            <img src={photo} alt={GTM_DOCTOR.name} width={1080} height={1080} loading="lazy" className="aspect-square w-full object-cover object-top md:aspect-auto md:h-full md:min-h-[280px]" />
           ) : (
             <div className="flex aspect-[16/9] items-center justify-center bg-gradient-to-br from-gold/40 via-accent/40 to-primary/15 md:aspect-auto">
               <span className="font-display flex size-24 items-center justify-center rounded-full bg-card text-[34px] font-semibold text-primary-deep shadow-sm">

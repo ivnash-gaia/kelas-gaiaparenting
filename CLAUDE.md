@@ -24,12 +24,12 @@ Local check: `npm ci && npm run build`, then open `.output/public` through any s
 
 Built from the brief "Course GTM — Brief, Kreatif & Panduan Campaign". All copy and offer facts live in `src/lib/gtm-data.ts`; `src/components/gtm/GtmPage.tsx` only renders them. Same "offer module" idea as the Academy: anything not confirmed is `null`/`false` and the page degrades instead of promising it.
 
-- `GTM_OFFER.orderUrl` is `null` → the buy buttons are disabled. Set it to the orderonline.id link to enable them (UTM params from the ad URL are passed through, `InitiateCheckout` fires on click).
-- `accessDuration: null` and `bonusesConfirmed: false` keep the access period and the bonus block off the page. `GTM_TESTIMONIALS` is empty, so the testimonial section is not rendered. `GTM_ASSETS` (all `null`) holds the hero video/photos; fill in as files arrive in `public/og/` or `src/assets/`.
+- `GTM_OFFER.orderUrl` is the orderonline.id checkout link (UTM params from the ad URL are appended on click, `InitiateCheckout` fires). Set it back to `null` and the buy buttons disable themselves and the homepage card says "Segera Hadir".
+- `accessDuration: null` and `bonusesConfirmed: false` keep the access period and the bonus block off the page. `GTM_TESTIMONIALS` is empty, so the testimonial section is not rendered. `GTM_ASSETS` holds the media: `previewYoutubeId` (hero preview, click-to-play thumbnail, the player only loads on tap; `previewAspect` is `16 / 9`, change it for a vertical video; the video must allow embedding in YouTube Studio) and `doctorPhoto` (`public/og/gtm-dr-frecillia.jpg`). The other slots (`heroPhoto`, `reframePhoto`, `closingPhoto`) are `null` until real files exist; add them under `public/og/`.
 - Doctor quotes (`GTM_QUOTES`, `GTM_CURRICULUM[].hook`) must be checked against the video before launch.
 - `src/lib/gtm-data.test.js` pins these flags; update it deliberately when a term is confirmed.
 - The `Purchase` pixel event belongs on the thank-you page, which is outside this site.
-- The homepage card (last entry of `EVENTS` in `src/routes/index.tsx`, image `src/assets/gtm-card.jpg`) reads the same data: it shows "Segera Hadir" until `orderUrl` is set, then flips to "Pendaftaran Dibuka" by itself. "Segera Hadir" cards still link to their page.
+- The homepage card (last entry of `EVENTS` in `src/routes/index.tsx`, image `src/assets/gtm-card.jpg`) reads the same data: it shows "Pendaftaran Dibuka" while `orderUrl` is set and "Segera Hadir" when it is `null`. "Segera Hadir" cards still link to their page.
 
 ## Gotchas
 

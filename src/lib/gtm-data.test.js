@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, test } from 'bun:test';
 import {
   GTM_ASSETS,
@@ -30,10 +31,24 @@ describe('GTM offer', () => {
   });
 });
 
-describe('unconfirmed terms are not promised', () => {
-  test('does not route purchases anywhere before a checkout link is supplied', () => {
-    expect(GTM_OFFER.orderUrl).toBeNull();
+describe('checkout link', () => {
+  test('points at the Gaia orderonline.id course page, over https', () => {
+    const url = new URL(GTM_OFFER.orderUrl);
+    expect(url.protocol).toBe('https:');
+    expect(url.hostname).toBe('gaia.orderonline.id');
+    expect(url.pathname).toBe('/course-gtm-3');
+    expect(url.searchParams.get('form')).toBeTruthy();
   });
+  test('FAQ payment answer says ordering is not open only while the link is missing', () => {
+    const missing = buildFaq({ ...GTM_OFFER, orderUrl: null }).find((f) => f.q.includes('bayar'));
+    expect(missing.a).toMatch(/belum dibuka/i);
+    const set = buildFaq().find((f) => f.q.includes('bayar'));
+    expect(set.a).not.toMatch(/belum dibuka/i);
+    expect(set.a).toMatch(/halaman pemesanan/i);
+  });
+});
+
+describe('unconfirmed terms are not promised', () => {
   test('does not promise an unconfirmed access duration', () => {
     expect(GTM_OFFER.accessDuration).toBeNull();
     const access = buildFaq().find((f) => f.q.startsWith('Akses'));
@@ -45,11 +60,20 @@ describe('unconfirmed terms are not promised', () => {
   test('no testimonials are invented', () => {
     expect(GTM_TESTIMONIALS).toHaveLength(0);
   });
-  test('creative assets are null until real files exist', () => {
-    expect(Object.values(GTM_ASSETS).every((v) => v === null)).toBe(true);
+});
+
+describe('creative assets', () => {
+  test('hero preview is the YouTube video, 16:9 by default', () => {
+    expect(GTM_ASSETS.previewYoutubeId).toBe('D2CjN09AsbI');
+    expect(GTM_ASSETS.previewAspect).toBe('16 / 9');
   });
-  test('FAQ payment answer does not claim a checkout page while the link is missing', () => {
-    const pay = buildFaq().find((f) => f.q.includes('bayar'));
-    expect(pay.a).toMatch(/belum dibuka/i);
+  test('doctor photo is a real file in public/', () => {
+    expect(GTM_ASSETS.doctorPhoto.startsWith('/og/')).toBe(true);
+    expect(existsSync(`public${GTM_ASSETS.doctorPhoto}`)).toBe(true);
+  });
+  test('slots without a real file stay null (no placeholders pretending to be photos)', () => {
+    for (const k of ['heroVideo', 'heroVideoPoster', 'heroPhoto', 'reframePhoto', 'closingPhoto']) {
+      expect(GTM_ASSETS[k]).toBeNull();
+    }
   });
 });

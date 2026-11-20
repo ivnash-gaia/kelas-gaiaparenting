@@ -17,8 +17,8 @@ export const GTM_OFFER = {
   priceLabel: "Rp 149.000",
   priceShort: "Rp149K",
 
-  /** NEEDS INPUT: checkout link (e.g. gaia.orderonline.id/...). While null the buy button is disabled. */
-  orderUrl: null as string | null,
+  /** Checkout link (orderonline.id). If this is ever set back to null the buy button is disabled and the homepage card says "Segera Hadir". */
+  orderUrl: "https://gaia.orderonline.id/course-gtm-3?form=62f71ffd9d8e8e417f13ec3d" as string | null,
   /** NEEDS INPUT: how long buyers keep access, e.g. "6 bulan". While null the page promises nothing about it. */
   accessDuration: null as string | null,
   /** NEEDS INPUT: the brief only *proposes* the 3 bonuses. Set true once they exist; shows the bonus block. */
@@ -43,11 +43,18 @@ export const GTM_DOCTOR = {
  * fallback for each slot. Put files in public/ (e.g. public/gtm/hero.jpg) and set the path here.
  */
 export const GTM_ASSETS = {
-  heroVideo: null as string | null, // 4:5 preview, 60–70 s, played muted with a sound button
+  /**
+   * Hero preview on YouTube (id only). Shown as a click-to-play thumbnail; the player loads on tap, so the page
+   * stays light. Takes priority over heroVideo. Change `previewAspect` if the video is not 16:9
+   * (e.g. "9 / 16" for a Short). The owner must allow embedding in YouTube Studio.
+   */
+  previewYoutubeId: "D2CjN09AsbI" as string | null,
+  previewAspect: "16 / 9",
+  heroVideo: null as string | null, // self-hosted file alternative to the YouTube preview
   heroVideoPoster: null as string | null,
   heroPhoto: null as string | null, // real mother + child at the table, face visible
   reframePhoto: null as string | null,
-  doctorPhoto: null as string | null, // frame from class footage (cleared for use)
+  doctorPhoto: "/og/gtm-dr-frecillia.jpg" as string | null,
   closingPhoto: null as string | null,
 };
 
@@ -145,7 +152,7 @@ export const GTM_MOMENTS = [
   {
     icon: "sprout",
     title: "Neophobia",
-    text: "Di atas 1 tahun anak sangat takut hal baru, termasuk makanan; usia 6–12 bulan masa terbaik mengenalkan.",
+    text: "Di atas 1 tahun, anak sangat takut sama hal baru, termasuk makanan. Usia 6–12 bulan itu masa terbaik buat mengenalkan.",
     ref: "Teori 14",
   },
   {
@@ -169,7 +176,7 @@ export const GTM_MOMENTS = [
   {
     icon: "alert",
     title: "Gag reflex ≠ tersedak",
-    text: "Gag reflex mekanisme belajar menelan; tersedak yang berbahaya.",
+    text: "Gag reflex itu mekanisme belajar menelan. Yang berbahaya itu tersedak.",
     ref: "QnA 3",
   },
   {
@@ -181,7 +188,7 @@ export const GTM_MOMENTS = [
   {
     icon: "clock",
     title: "Aturan 2-3-2 bukan untuk bayi",
-    text: "Baru pas di atas 1 tahun; di bawahnya ikuti jam bangun anak.",
+    text: "Baru cocok di atas 1 tahun. Di bawah itu, ikuti jam bangun anak aja.",
     ref: "QnA 2",
   },
   {
@@ -194,10 +201,10 @@ export const GTM_MOMENTS = [
 
 // 6. Eight Q&A questions answered by the doctor
 export const GTM_QNA = [
-  "Anak 9 bulan malah melepeh saat tumbuh gigi — boleh turun tekstur?",
+  "Anak 9 bulan malah melepeh pas tumbuh gigi. Boleh turun tekstur nggak?",
   "Kapan waktu menyusu dan kapan waktu makan?",
   "Cara naik tekstur, dan apa bedanya gag reflex dengan tersedak?",
-  "Anak bosan dengan menu yang sama — harus masak banyak?",
+  "Anak bosan sama menu yang itu-itu aja. Harus masak banyak ya?",
   "Kenapa masakan nenek lebih lahap? Boleh pakai bumbu & makanan instan?",
   "Makan sambil nonton, dan cara menyamakan aturan dengan pengasuh",
   "Harus selesai 30 menit? Kenapa anak mengemut?",
