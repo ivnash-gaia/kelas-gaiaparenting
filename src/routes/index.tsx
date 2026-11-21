@@ -87,7 +87,7 @@ const EVENTS: EventItem[] = [
   },
   {
     slug: "newborn-care-advance",
-    to: "/kelas-newborn-care",
+    to: "/kelas-newborn-care-online",
     tag: "Kelas Online",
     title: "Kelas Perawatan Bayi Baru Lahir Advance",
     desc: "Persiapan persalinan SC, newborn checklist, pijat & tummy time, sampai sleep training dasar, bareng pakar.",

@@ -18,7 +18,7 @@ const PAGES = [
   "/privacy-policy",
   "/kelas-laktasi-online",
   "/kelas-mpasi-online",
-  "/kelas-newborn-care",
+  "/kelas-newborn-care-online",
   "/kelas-newborn-care-offline",
   "/kelas-newborn-care-offline-surabaya",
   "/kelas-tumbuh-kembang-anak-online",

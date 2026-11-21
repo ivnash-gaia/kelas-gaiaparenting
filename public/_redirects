@@ -1,0 +1,4 @@
+# Pages that moved. 301 = permanent, so search engines carry the old address over to the new one
+# and old links, ads and WhatsApp shares keep working. Format: <old path> <new path> 301
+# Keep a line here for as long as the old URL may still be out in the wild (ads, shares, backlinks).
+/kelas-newborn-care /kelas-newborn-care-online 301

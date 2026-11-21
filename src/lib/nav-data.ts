@@ -29,7 +29,7 @@ export const NAV: NavEntry[] = [
       },
       { to: "/kelas-mpasi-online", label: "Intensif MPASI 7 Hari", hint: "Zoom · 7 sesi" },
       {
-        to: "/kelas-newborn-care",
+        to: "/kelas-newborn-care-online",
         label: "Perawatan Bayi Baru Lahir Advance",
         hint: "Zoom · 4 sesi",
       },

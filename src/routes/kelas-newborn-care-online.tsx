@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { EventPage } from "@/components/EventPage";
 import { NEWBORN_CARE_EVENT } from "@/lib/event-newborn-care";
 
-export const Route = createFileRoute("/kelas-newborn-care")({
+export const Route = createFileRoute("/kelas-newborn-care-online")({
   head: () => ({
     meta: [
       { title: "Kelas Perawatan Bayi Baru Lahir Advance | Gaia Parenting" },
@@ -17,12 +17,12 @@ export const Route = createFileRoute("/kelas-newborn-care")({
         content:
           "Kelas Newborn Advance, 24 & 26–28 Oktober 2026. Isinya persiapan persalinan SC, newborn checklist, sleep training dasar, bonding, dan stimulasi bareng pakar.",
       },
-      { property: "og:url", content: "https://kelas.gaiaparenting.com/kelas-newborn-care" },
+      { property: "og:url", content: "https://kelas.gaiaparenting.com/kelas-newborn-care-online" },
       { property: "og:type", content: "article" },
       { property: "og:image", content: "https://kelas.gaiaparenting.com/og/newborn-care-hero.jpg" },
       { name: "twitter:image", content: "https://kelas.gaiaparenting.com/og/newborn-care-hero.jpg" },
     ],
-    links: [{ rel: "canonical", href: "https://kelas.gaiaparenting.com/kelas-newborn-care" }],
+    links: [{ rel: "canonical", href: "https://kelas.gaiaparenting.com/kelas-newborn-care-online" }],
   }),
   component: () => <EventPage event={NEWBORN_CARE_EVENT} />,
 });
