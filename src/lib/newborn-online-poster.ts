@@ -1,7 +1,7 @@
-// Poster for "Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula" (online, 26-27 & 30 Nov 2026).
+// Poster for "Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula" (online, master page).
 // Lives in public/og/ so the same file serves the class page, the directory card and the link
-// preview. Same pattern as couple-yoga-poster.ts. The poster carries no dates, so it stays valid
-// for later runs of the class.
+// preview. Same pattern as couple-yoga-poster.ts. The poster carries no dates or prices, so it
+// stays valid for every run of the class.
 const newbornOnlinePoster = {
   url: "/og/newborn-online-poster.jpg",
   // Same poster on a 16:9 canvas (extra background above and below) for the directory card, which

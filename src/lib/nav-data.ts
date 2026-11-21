@@ -23,7 +23,7 @@ export const NAV: NavEntry[] = [
     label: "Kelas Online",
     items: [
       {
-        to: "/kelas-newborn-online-gaia",
+        to: "/kelas-newborn-online",
         label: "Perawatan Bayi Baru Lahir untuk Pemula",
         hint: "Zoom · 3 materi",
       },

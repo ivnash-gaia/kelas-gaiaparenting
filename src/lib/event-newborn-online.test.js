@@ -2,6 +2,11 @@ import { describe, expect, test } from "bun:test";
 import { existsSync, readFileSync } from "node:fs";
 import { runInNewContext } from "node:vm";
 
+// /kelas-newborn-online is a master page: the run details (dates, price, links, experts) change,
+// the structure does not. These tests check that the data is consistent with itself, so they keep
+// passing for the next run, and fail when an edit introduces a mistake (wrong weekday, badge that
+// does not match the price, a menu or card that no longer reads from this file).
+
 // Evaluate the actual event configuration without the bundler.
 const source = readFileSync(new URL("./event-newborn-online.ts", import.meta.url), "utf8")
   .replace(/^import .*;\n/gm, "")
@@ -9,95 +14,131 @@ const source = readFileSync(new URL("./event-newborn-online.ts", import.meta.url
 const poster = { url: "/og/newborn-online-poster.jpg", absoluteUrl: "https://x/og/p.jpg" };
 const event = runInNewContext(`${source}\nevent;`, { newbornOnlinePoster: poster });
 
-const parseIDR = (s) => Number(s.replace(/[^\d]/g, ""));
-const stripTags = (s) => s.replace(/<[^>]+>/g, "");
+const idr = (s) => Number(String(s).replace(/[^\d]/g, ""));
+const DAYS = { minggu: 0, senin: 1, selasa: 2, rabu: 3, kamis: 4, jumat: 5, sabtu: 6 };
+const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, mei: 4, jun: 5, jul: 6, agu: 7, agt: 7, sep: 8, okt: 9, nov: 10, des: 11 };
 
-describe("Newborn Online (26-27 & 30 Nov 2026) matches the brief", () => {
-  test("price: Rp135.000, strike Rp175.000, badge matches the difference", () => {
-    expect(event.priceNow).toBe("Rp 135.000");
-    expect(event.priceWas).toBe("Rp 175.000");
-    const saving = parseIDR(event.priceWas) - parseIDR(event.priceNow);
-    expect(saving).toBe(40000);
-    expect(event.priceBadge).toBe("Hemat Rp 40.000");
+/** "Kamis, 26 Nov 2026 (Materi 1)" -> { weekday: 4, date: Date(UTC) } */
+function parseRow(d) {
+  const m = d.match(/^([A-Za-z]+),\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/);
+  if (!m) throw new Error(`Cannot read schedule date: ${d}`);
+  const weekday = DAYS[m[1].toLowerCase()];
+  const month = MONTHS[m[3].slice(0, 3).toLowerCase()];
+  if (weekday === undefined || month === undefined) throw new Error(`Unknown day or month in: ${d}`);
+  return { weekday, day: Number(m[2]), date: new Date(Date.UTC(Number(m[4]), month, Number(m[2]))) };
+}
+
+describe("price", () => {
+  test("strike-through price is higher than the current price", () => {
+    expect(idr(event.priceWas)).toBeGreaterThan(idr(event.priceNow));
   });
 
-  test("order and WhatsApp links", () => {
+  test("discount badge matches the prices (Rp amount or percent)", () => {
+    const now = idr(event.priceNow);
+    const was = idr(event.priceWas);
+    const badge = event.priceBadge;
+    if (badge.includes("Rp")) {
+      expect(idr(badge)).toBe(was - now);
+    } else if (badge.includes("%")) {
+      expect(Math.abs(idr(badge) - ((was - now) / was) * 100)).toBeLessThan(1);
+    } else {
+      throw new Error(`Badge is neither an Rp amount nor a percent: ${badge}`);
+    }
+  });
+});
+
+describe("links", () => {
+  test("registration goes to an orderonline.id form", () => {
     const order = new URL(event.ctaPrimary.href);
     expect(order.host).toBe("gaia.orderonline.id");
-    expect(order.pathname).toBe("/pelatihan-perawatan-bayi-baru-lahir-online");
-    expect(order.searchParams.get("form")).toBe("62e4f217af0587115a3ebed5");
+    expect(order.searchParams.get("form")).toBeTruthy();
+  });
+
+  test("WhatsApp button opens Gaia's number with a prefilled question about this class", () => {
     const wa = new URL(event.ctaSecondary.href);
     expect(wa.host).toBe("wa.me");
     expect(wa.pathname).toBe("/6281219596828");
-    expect(wa.searchParams.get("text")).toBe("Halo Gaia, saya mau tanya tentang Kelas Newborn Online");
+    expect(wa.searchParams.get("text")).toContain("Newborn Online");
+  });
+});
+
+describe("schedule", () => {
+  const rows = event.schedule.map((s) => ({ ...s, ...parseRow(s.d) }));
+
+  test("at least one session, each with a time and a valid status", () => {
+    expect(rows.length).toBeGreaterThan(0);
+    for (const r of rows) {
+      expect(r.t).toMatch(/\d{1,2}[.:]\d{2}/);
+      expect(["open", "few", "full"]).toContain(r.status);
+    }
   });
 
-  test("three sessions on the right weekdays and times, all open", () => {
-    expect(event.schedule.map((s) => [s.d, s.t, s.status])).toEqual([
-      ["Kamis, 26 Nov 2026 (Materi 1)", "19.00–20.00 WIB", "open"],
-      ["Jumat, 27 Nov 2026 (Materi 2)", "19.00–20.30 WIB", "open"],
-      ["Senin, 30 Nov 2026 (Materi 3)", "16.00–17.30 WIB", "open"],
-    ]);
-    // The weekday names are real: 26 Nov 2026 is a Thursday.
-    const day = (d) => new Date(Date.UTC(2026, 10, d)).getUTCDay();
-    expect([day(26), day(27), day(30)]).toEqual([4, 5, 1]);
+  test("the weekday name matches the date (catches typos when dates are edited)", () => {
+    for (const r of rows) expect(r.date.getUTCDay()).toBe(r.weekday);
   });
 
-  test("the three session lengths add up to the advertised ±4 jam", () => {
-    expect(event.heroFacts.find((f) => f.k === "Durasi").v).toBe("3 Materi (±4 jam)");
-    expect(1 + 1.5 + 1.5).toBe(4);
+  test("sessions are in date order", () => {
+    const times = rows.map((r) => r.date.getTime());
+    expect(times).toEqual([...times].sort((a, b) => a - b));
   });
 
-  test("curriculum: 3 sessions with 15, 5 and 7 topics, each led by its own expert", () => {
-    expect(event.curriculum.map((c) => c.items.length)).toEqual([15, 5, 7]);
-    expect(event.curriculum[0].title).toContain("dr. Ruswantriani, Sp.OG");
-    expect(event.curriculum[1].title).toContain("Gita Suci Pratiwi");
-    expect(event.curriculum[2].title).toContain("Inong Mala");
+  test('the hero "Jadwal terdekat" starts with the first session day', () => {
+    const fact = event.heroFacts.find((f) => f.k === "Jadwal terdekat").v;
+    expect(fact.startsWith(String(rows[0].day))).toBe(true);
+  });
+});
+
+describe("content structure", () => {
+  test("every curriculum session names one of the listed experts and has topics", () => {
+    expect(event.curriculum.length).toBeGreaterThan(0);
+    for (const c of event.curriculum) {
+      expect(c.items.length).toBeGreaterThan(0);
+      expect(event.instructor.some((i) => c.title.includes(i.name))).toBe(true);
+    }
   });
 
-  test("3 experts, 3 learning points, 4 bonuses, 3 FAQ entries", () => {
-    expect(event.instructor.map((i) => i.name)).toEqual([
-      "dr. Ruswantriani, Sp.OG",
-      "Gita Suci Pratiwi, A.Md.Kep., CFPY",
-      "Inong Mala, S.Psi.",
-    ]);
-    expect(event.learn.length).toBe(3);
-    expect(event.bonus.map((b) => b.h)).toContain("Hadiah Diapers Merries NB");
-    expect(event.bonus.length).toBe(4);
-    expect(event.faq.length).toBe(3);
-  });
-
-  test("no testimonials in the brief, so none are invented", () => {
-    expect(event.testimonials).toEqual([]);
+  test("testimonials, when present, are complete (the section is hidden while empty)", () => {
+    for (const t of event.testimonials) {
+      expect(t.name && t.quote).toBeTruthy();
+      expect(t.name).not.toMatch(/\[|placeholder/i);
+    }
   });
 
   test("online class does not promise props or an in-person venue", () => {
-    expect(event.faq[2].a).toContain("alat peraga tidak disediakan");
+    expect(event.faq.some((f) => f.a.includes("alat peraga tidak disediakan"))).toBe(true);
     expect(event.venue).toContain("Zoom");
   });
 
-  test("Meta Pixel name is the stable class name, not the headline", () => {
-    expect(event.pixelName).toBe("Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula");
-    expect(stripTags(event.heroTitle)).toBe(
-      "Siap Sambut Bayi Baru Lahir, Belajar dari 3 Pakar Langsung untuk Orang Tua Pemula dari Rumah",
-    );
+  test("no em-dash drama in the learner-facing copy", () => {
+    expect(JSON.stringify(event)).not.toContain("—");
   });
+});
 
-  test("poster file exists and is the hero image", () => {
+describe("Meta Pixel name", () => {
+  test("is the class name, so every run is counted under one event in Ads reporting", () => {
+    expect(event.pixelName).toBe("Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula");
+  });
+});
+
+describe("poster and directory card", () => {
+  test("poster and its 16:9 card version exist, and the page uses the poster", () => {
     expect(event.heroImage).toBe("/og/newborn-online-poster.jpg");
     expect(existsSync(new URL("../../public/og/newborn-online-poster.jpg", import.meta.url))).toBe(true);
-  });
-
-  test("the 16:9 card version of the poster exists and is wired to the directory card", () => {
     const posterSrc = readFileSync(new URL("./newborn-online-poster.ts", import.meta.url), "utf8");
     const file = posterSrc.match(/cardUrl:\s*"\/og\/([^"]+)"/)[1];
     expect(existsSync(new URL(`../../public/og/${file}`, import.meta.url))).toBe(true);
+  });
+
+  test("the homepage card reads price and dates from this data, not its own copy", () => {
     const home = readFileSync(new URL("../routes/index.tsx", import.meta.url), "utf8");
+    expect(home).toContain("price: NEWBORN_ONLINE_EVENT.priceNow");
+    expect(home).toContain('NEWBORN_ONLINE_EVENT.heroFacts.find((f) => f.k === "Jadwal terdekat")');
     expect(home).toContain("image: newbornOnlinePoster.cardUrl");
   });
 
-  test("no em-dash drama in the learner-facing copy", () => {
-    const text = JSON.stringify(event);
-    expect(text).not.toContain("—");
+  test("the page lives at the generic URL, registered and in the menu", () => {
+    expect(existsSync(new URL("../routes/kelas-newborn-online.tsx", import.meta.url))).toBe(true);
+    expect(readFileSync(new URL("../../vite.config.ts", import.meta.url), "utf8")).toContain('"/kelas-newborn-online"');
+    expect(readFileSync(new URL("./nav-data.ts", import.meta.url), "utf8")).toContain('"/kelas-newborn-online"');
   });
 });

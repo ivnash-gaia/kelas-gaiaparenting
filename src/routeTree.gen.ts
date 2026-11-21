@@ -18,7 +18,7 @@ import { Route as KelasMpasiOnlineRouteImport } from './routes/kelas-mpasi-onlin
 import { Route as KelasNewbornCareRouteImport } from './routes/kelas-newborn-care'
 import { Route as KelasNewbornCareOfflineRouteImport } from './routes/kelas-newborn-care-offline'
 import { Route as KelasNewbornCareOfflineSurabayaRouteImport } from './routes/kelas-newborn-care-offline-surabaya'
-import { Route as KelasNewbornOnlineGaiaRouteImport } from './routes/kelas-newborn-online-gaia'
+import { Route as KelasNewbornOnlineRouteImport } from './routes/kelas-newborn-online'
 import { Route as KelasTumbuhKembangAnakOnlineRouteImport } from './routes/kelas-tumbuh-kembang-anak-online'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as TestPageRouteImport } from './routes/test-page'
@@ -70,9 +70,9 @@ const KelasNewbornCareOfflineSurabayaRoute =
     path: '/kelas-newborn-care-offline-surabaya',
     getParentRoute: () => rootRouteImport,
   } as any)
-const KelasNewbornOnlineGaiaRoute = KelasNewbornOnlineGaiaRouteImport.update({
-  id: '/kelas-newborn-online-gaia',
-  path: '/kelas-newborn-online-gaia',
+const KelasNewbornOnlineRoute = KelasNewbornOnlineRouteImport.update({
+  id: '/kelas-newborn-online',
+  path: '/kelas-newborn-online',
   getParentRoute: () => rootRouteImport,
 } as any)
 const KelasTumbuhKembangAnakOnlineRoute =
@@ -102,7 +102,7 @@ export interface FileRoutesByFullPath {
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
   '/kelas-newborn-care-offline': typeof KelasNewbornCareOfflineRoute
   '/kelas-newborn-care-offline-surabaya': typeof KelasNewbornCareOfflineSurabayaRoute
-  '/kelas-newborn-online-gaia': typeof KelasNewbornOnlineGaiaRoute
+  '/kelas-newborn-online': typeof KelasNewbornOnlineRoute
   '/kelas-tumbuh-kembang-anak-online': typeof KelasTumbuhKembangAnakOnlineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/test-page': typeof TestPageRoute
@@ -117,7 +117,7 @@ export interface FileRoutesByTo {
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
   '/kelas-newborn-care-offline': typeof KelasNewbornCareOfflineRoute
   '/kelas-newborn-care-offline-surabaya': typeof KelasNewbornCareOfflineSurabayaRoute
-  '/kelas-newborn-online-gaia': typeof KelasNewbornOnlineGaiaRoute
+  '/kelas-newborn-online': typeof KelasNewbornOnlineRoute
   '/kelas-tumbuh-kembang-anak-online': typeof KelasTumbuhKembangAnakOnlineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/test-page': typeof TestPageRoute
@@ -133,7 +133,7 @@ export interface FileRoutesById {
   '/kelas-newborn-care': typeof KelasNewbornCareRoute
   '/kelas-newborn-care-offline': typeof KelasNewbornCareOfflineRoute
   '/kelas-newborn-care-offline-surabaya': typeof KelasNewbornCareOfflineSurabayaRoute
-  '/kelas-newborn-online-gaia': typeof KelasNewbornOnlineGaiaRoute
+  '/kelas-newborn-online': typeof KelasNewbornOnlineRoute
   '/kelas-tumbuh-kembang-anak-online': typeof KelasTumbuhKembangAnakOnlineRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
   '/test-page': typeof TestPageRoute
@@ -150,7 +150,7 @@ export interface FileRouteTypes {
     | '/kelas-newborn-care'
     | '/kelas-newborn-care-offline'
     | '/kelas-newborn-care-offline-surabaya'
-    | '/kelas-newborn-online-gaia'
+    | '/kelas-newborn-online'
     | '/kelas-tumbuh-kembang-anak-online'
     | '/privacy-policy'
     | '/test-page'
@@ -165,7 +165,7 @@ export interface FileRouteTypes {
     | '/kelas-newborn-care'
     | '/kelas-newborn-care-offline'
     | '/kelas-newborn-care-offline-surabaya'
-    | '/kelas-newborn-online-gaia'
+    | '/kelas-newborn-online'
     | '/kelas-tumbuh-kembang-anak-online'
     | '/privacy-policy'
     | '/test-page'
@@ -180,7 +180,7 @@ export interface FileRouteTypes {
     | '/kelas-newborn-care'
     | '/kelas-newborn-care-offline'
     | '/kelas-newborn-care-offline-surabaya'
-    | '/kelas-newborn-online-gaia'
+    | '/kelas-newborn-online'
     | '/kelas-tumbuh-kembang-anak-online'
     | '/privacy-policy'
     | '/test-page'
@@ -196,7 +196,7 @@ export interface RootRouteChildren {
   KelasNewbornCareRoute: typeof KelasNewbornCareRoute
   KelasNewbornCareOfflineRoute: typeof KelasNewbornCareOfflineRoute
   KelasNewbornCareOfflineSurabayaRoute: typeof KelasNewbornCareOfflineSurabayaRoute
-  KelasNewbornOnlineGaiaRoute: typeof KelasNewbornOnlineGaiaRoute
+  KelasNewbornOnlineRoute: typeof KelasNewbornOnlineRoute
   KelasTumbuhKembangAnakOnlineRoute: typeof KelasTumbuhKembangAnakOnlineRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   TestPageRoute: typeof TestPageRoute
@@ -267,11 +267,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KelasNewbornCareOfflineSurabayaRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/kelas-newborn-online-gaia': {
-      id: '/kelas-newborn-online-gaia'
-      path: '/kelas-newborn-online-gaia'
-      fullPath: '/kelas-newborn-online-gaia'
-      preLoaderRoute: typeof KelasNewbornOnlineGaiaRouteImport
+    '/kelas-newborn-online': {
+      id: '/kelas-newborn-online'
+      path: '/kelas-newborn-online'
+      fullPath: '/kelas-newborn-online'
+      preLoaderRoute: typeof KelasNewbornOnlineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/kelas-tumbuh-kembang-anak-online': {
@@ -309,7 +309,7 @@ const rootRouteChildren: RootRouteChildren = {
   KelasNewbornCareRoute: KelasNewbornCareRoute,
   KelasNewbornCareOfflineRoute: KelasNewbornCareOfflineRoute,
   KelasNewbornCareOfflineSurabayaRoute: KelasNewbornCareOfflineSurabayaRoute,
-  KelasNewbornOnlineGaiaRoute: KelasNewbornOnlineGaiaRoute,
+  KelasNewbornOnlineRoute: KelasNewbornOnlineRoute,
   KelasTumbuhKembangAnakOnlineRoute: KelasTumbuhKembangAnakOnlineRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,
   TestPageRoute: TestPageRoute,

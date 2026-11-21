@@ -1,10 +1,22 @@
 import type { EventData } from "./event-data";
 import newbornOnlinePoster from "./newborn-online-poster";
 
-// Source: "GAIA EVENT: BRIEF KONTEN LANDING PAGE (Kelas Perawatan Bayi Baru Lahir Online, 26-27 & 30 Nov 2026)".
+// MASTER PAGE: /kelas-newborn-online is one permanent URL for this class. Each new run only
+// changes the details below; the layout, copy and Meta Pixel name stay.
+//
+// PER RUN, UPDATE:
+//   - heroFacts "Jadwal terdekat" and `schedule` (dates, times, status). The homepage card reads
+//     the dates and the price from here too, so nothing else needs touching.
+//   - priceNow / priceWas / priceBadge / priceNote (the Diapers Merries NB giveaway in priceNote
+//     and in `bonus` belongs to the 26-30 Nov 2026 run; remove it when that run is over).
+//   - ctaPrimary.href when the orderonline.id form changes.
+//   - `instructor` and the expert name in each curriculum title, if the line-up changes.
+//   - `testimonials`: real quotes only (the section stays hidden while the list is empty).
+// KEEP `pixelName` as is, so Meta Ads reporting adds every run up under one event name.
+//
+// First run (26-27 & 30 Nov 2026) comes from "GAIA EVENT: BRIEF KONTEN LANDING PAGE".
 // Copy follows the brief. Small edits only: dashes used as drama turned into commas, and two
-// typos in the curriculum fixed ("& cegah komplikasi", "Do & Don't"). The brief has no
-// testimonials, so that list is empty and the page hides the section.
+// typos in the curriculum fixed ("& cegah komplikasi", "Do & Don't").
 export const NEWBORN_ONLINE_EVENT: EventData = {
   topbarTag: "Gaia Academy · Kelas Online via Zoom",
 

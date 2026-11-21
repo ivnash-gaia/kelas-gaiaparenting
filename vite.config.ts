@@ -24,7 +24,7 @@ const PAGES = [
   "/kelas-tumbuh-kembang-anak-online",
   "/couple-yoga-and-childbirth-preparation",
   "/kelas-gtm-online",
-  "/kelas-newborn-online-gaia",
+  "/kelas-newborn-online",
   "/test-page",
 ];
 

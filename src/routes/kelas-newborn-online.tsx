@@ -3,16 +3,16 @@ import { EventPage } from "@/components/EventPage";
 import { NEWBORN_ONLINE_EVENT } from "@/lib/event-newborn-online";
 import newbornOnlinePoster from "@/lib/newborn-online-poster";
 
-const URL = "https://kelas.gaiaparenting.com/kelas-newborn-online-gaia";
+const URL = "https://kelas.gaiaparenting.com/kelas-newborn-online";
 
-export const Route = createFileRoute("/kelas-newborn-online-gaia")({
+export const Route = createFileRoute("/kelas-newborn-online")({
   head: () => ({
     meta: [
       { title: "Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula | Gaia Parenting" },
       {
         name: "description",
         content:
-          "Kelas online 3 materi via Zoom: persalinan, perawatan bayi baru lahir, dan persiapan menyusui bareng dokter kandungan, perawat, dan konselor menyusui. Rp 135rb, rekaman 6 bulan.",
+          "Kelas online 3 materi via Zoom: persalinan, perawatan bayi baru lahir, dan persiapan menyusui bareng dokter kandungan, perawat, dan konselor menyusui. Rekaman 6 bulan.",
       },
       {
         property: "og:title",

@@ -10,6 +10,7 @@ import gtmCard from "@/assets/gtm-card.jpg";
 import coupleYogaPoster from "@/lib/couple-yoga-poster";
 import { GTM_OFFER } from "@/lib/gtm-data";
 import newbornOnlinePoster from "@/lib/newborn-online-poster";
+import { NEWBORN_ONLINE_EVENT } from "@/lib/event-newborn-online";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -52,8 +53,8 @@ type EventItem = {
 
 const EVENTS: EventItem[] = [
   {
-    slug: "newborn-online-gaia",
-    to: "/kelas-newborn-online-gaia",
+    slug: "newborn-online",
+    to: "/kelas-newborn-online",
     tag: "Kelas Online",
     title: "Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula",
     desc: "Dari tanda persalinan, memandikan dan merawat tali pusat, sampai teknik perlekatan menyusui. 3 materi via Zoom bareng dokter kandungan, perawat, dan konselor menyusui.",
@@ -61,9 +62,10 @@ const EVENTS: EventItem[] = [
       { k: "Format", v: "Online · Zoom" },
       { k: "Durasi", v: "3 Materi · ±4 jam" },
       { k: "Lokasi", v: "Daring" },
-      { k: "Jadwal", v: "26–27 & 30 November 2026" },
+      // Run details come from the class page data, so a new run is edited in one place.
+      { k: "Jadwal", v: NEWBORN_ONLINE_EVENT.heroFacts.find((f) => f.k === "Jadwal terdekat")?.v ?? "" },
     ],
-    price: "Rp 135.000",
+    price: NEWBORN_ONLINE_EVENT.priceNow,
     status: "open",
     image: newbornOnlinePoster.cardUrl,
   },
