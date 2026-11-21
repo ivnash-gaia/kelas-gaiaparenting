@@ -197,12 +197,12 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
 
   const PriceBlock = ({ centered = false }: { centered?: boolean }) => (
     <>
-      <div className={`mb-1 flex items-baseline gap-2.5 ${centered ? "justify-center" : ""}`}>
-        <span className="font-display text-[33px] font-semibold text-foreground">
+      <div className={`mb-1 flex flex-wrap items-baseline gap-x-2.5 gap-y-1 ${centered ? "justify-center" : ""}`}>
+        <span className="font-display whitespace-nowrap text-[33px] font-semibold text-foreground">
           {EVENT.priceNow}
         </span>
-        <span className="text-[16px] text-ink-soft line-through">{EVENT.priceWas}</span>
-        <span className="rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-primary-deep">
+        <span className="whitespace-nowrap text-[16px] text-ink-soft line-through">{EVENT.priceWas}</span>
+        <span className="whitespace-nowrap rounded-md bg-primary/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-primary-deep">
           {EVENT.priceBadge}
         </span>
       </div>
@@ -467,30 +467,32 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
           </div>
         </section>
 
-        <section className="reveal px-5 py-11">
-          <Eyebrow>Kata Orang Tua Lain</Eyebrow>
-          <SectionTitle>Mereka dulu juga ragu</SectionTitle>
-          <SectionSub>Cerita peserta yang sudah lebih dulu ikut kelas ini.</SectionSub>
-          <div className="flex flex-col gap-3">
-            {EVENT.testimonials.map((t) => (
-              <div key={t.name} className="rounded-2xl border border-border bg-card p-4">
-                <div className="mb-2 text-[13px] tracking-widest text-gold">
-                  {"★".repeat(t.stars)}
-                </div>
-                <p className="mb-3 text-[13.3px] leading-relaxed text-foreground">"{t.quote}"</p>
-                <div className="flex items-center gap-2.5">
-                  <div className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-accent/40 text-sm">
-                    {t.ico}
+        {EVENT.testimonials.length > 0 && (
+          <section className="reveal px-5 py-11">
+            <Eyebrow>Kata Orang Tua Lain</Eyebrow>
+            <SectionTitle>Mereka dulu juga ragu</SectionTitle>
+            <SectionSub>Cerita peserta yang sudah lebih dulu ikut kelas ini.</SectionSub>
+            <div className="flex flex-col gap-3">
+              {EVENT.testimonials.map((t) => (
+                <div key={t.name} className="rounded-2xl border border-border bg-card p-4">
+                  <div className="mb-2 text-[13px] tracking-widest text-gold">
+                    {"★".repeat(t.stars)}
                   </div>
-                  <div>
-                    <div className="text-[12.5px] font-bold text-foreground">{t.name}</div>
-                    <div className="text-[11px] text-ink-soft">{t.meta}</div>
+                  <p className="mb-3 text-[13.3px] leading-relaxed text-foreground">"{t.quote}"</p>
+                  <div className="flex items-center gap-2.5">
+                    <div className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-accent/40 text-sm">
+                      {t.ico}
+                    </div>
+                    <div>
+                      <div className="text-[12.5px] font-bold text-foreground">{t.name}</div>
+                      <div className="text-[11px] text-ink-soft">{t.meta}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         <section className="reveal bg-secondary px-5 py-11">
           <Eyebrow>Bonus Peserta</Eyebrow>

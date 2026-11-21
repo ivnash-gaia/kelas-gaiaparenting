@@ -9,6 +9,7 @@ import laktasiHero from "@/assets/laktasi-hero.jpg";
 import gtmCard from "@/assets/gtm-card.jpg";
 import coupleYogaPoster from "@/lib/couple-yoga-poster";
 import { GTM_OFFER } from "@/lib/gtm-data";
+import newbornOnlinePoster from "@/lib/newborn-online-poster";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,6 +51,22 @@ type EventItem = {
 };
 
 const EVENTS: EventItem[] = [
+  {
+    slug: "newborn-online-gaia",
+    to: "/kelas-newborn-online-gaia",
+    tag: "Kelas Online",
+    title: "Pelatihan Perawatan Bayi Baru Lahir untuk Orang Tua Pemula",
+    desc: "Dari tanda persalinan, memandikan dan merawat tali pusat, sampai teknik perlekatan menyusui. 3 materi via Zoom bareng dokter kandungan, perawat, dan konselor menyusui.",
+    facts: [
+      { k: "Format", v: "Online · Zoom" },
+      { k: "Durasi", v: "3 Materi · ±4 jam" },
+      { k: "Lokasi", v: "Daring" },
+      { k: "Jadwal", v: "26–27 & 30 November 2026" },
+    ],
+    price: "Rp 135.000",
+    status: "open",
+    image: newbornOnlinePoster.cardUrl,
+  },
   {
     slug: "breastfeeding",
     to: "/kelas-mpasi-online",

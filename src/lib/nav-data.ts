@@ -22,6 +22,11 @@ export const NAV: NavEntry[] = [
   {
     label: "Kelas Online",
     items: [
+      {
+        to: "/kelas-newborn-online-gaia",
+        label: "Perawatan Bayi Baru Lahir untuk Pemula",
+        hint: "Zoom · 3 materi",
+      },
       { to: "/kelas-mpasi-online", label: "Intensif MPASI 7 Hari", hint: "Zoom · 7 sesi" },
       {
         to: "/kelas-newborn-care",
