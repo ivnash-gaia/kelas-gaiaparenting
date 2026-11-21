@@ -96,7 +96,7 @@ function PrivacyPolicyPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-[920px] px-5 pb-16">
-        <TopBar compact />
+        <TopBar compact flush />
 
         <article className="mx-auto max-w-[680px] py-10">
           <div className="mb-3 flex items-center gap-2 text-[11.5px] font-bold uppercase tracking-[0.16em] text-brand-orange-deep">

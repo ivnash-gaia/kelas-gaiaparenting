@@ -33,12 +33,14 @@ Built from the brief "Course GTM — Brief, Kreatif & Panduan Campaign". All cop
 
 ## Gotchas
 
-- **New page** = new file in `src/routes/` **and** its path added to `PAGES` in `vite.config.ts`. Without the second step no HTML file is produced and the URL 404s.
+- **New page** = new file in `src/routes/` **and** its path added to `PAGES` in `vite.config.ts`. Without the second step no HTML file is produced and the URL 404s. A class page also goes into the top menu (`NAV` in `src/lib/nav-data.ts`) and the homepage `EVENTS` list.
 - **Existing URLs are public** (shared in WhatsApp and ads, set as canonical and `og:url`). Never rename or remove a route. Output is flat (`/kelas-mpasi-online` → `kelas-mpasi-online.html`) so URLs have no trailing slash and no redirect.
 - **Do not reintroduce Lovable asset pointers** (`*.asset.json`, `/__l5e/assets-v1/...`). Put images in `public/og/` (social previews, poster) or `src/assets/` (imported in code).
 - **Lockfile is `package-lock.json`** (public npm registry). The old `bun.lock` pointed at Lovable's private package cache and cannot install elsewhere. `.npmrc` sets `legacy-peer-deps=true`; keep it, or `npm ci` fails.
 - **`nitro: { preset: "cloudflare-module" }` is pinned on purpose.** Unpinned, Nitro switches layout when it detects Cloudflare Pages and the output folder changes.
 - **Meta Pixel event name = the event's `heroTitle` (tags stripped).** Rewording a headline silently renames the event in Meta Ads reporting. If you change a live headline, set `pixelName` in that event's data module to the old text (see `event-laktasi.ts`). Real participant testimonials are quotes: do not edit their wording.
+- **Top menu** = `NAV` in `src/lib/nav-data.ts`, rendered by `src/components/TopBar.tsx`: Beranda, Kelas Online, Kelas Offline, Belajar Mandiri (the last three are dropdowns; the GTM video course is the only Belajar Mandiri item for now). The bar switches to a hamburger sheet by its own width (container query), because event pages are a 480px column even on desktop. `nav-data.test.js` fails if a menu link has no route file or is missing from `PAGES`. The GTM landing page and `/gaia-academy` keep their own headers on purpose.
+- **Logo size**: the `GaiaLogo` viewBox is cropped to the artwork, so the height class is the real logo height (`h-9`/`h-10` in headers). Do not put the old `0 0 225 225` viewBox back; the logo shrinks to a third.
 - `public/404.html` is the not-found page. After a deploy, open a made-up URL and confirm it shows.
 - `/test-page` is a leftover Lovable test route and is still published. Remove it from `src/routes/` and `PAGES` when ready.
 - Tests: `bun test src/lib` (pricing and schedule checks). Typecheck: `npx tsc --noEmit`.

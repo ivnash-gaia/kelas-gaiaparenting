@@ -761,7 +761,7 @@ function Closing() {
 function Footer() {
   return (
     <footer className="bg-primary-deep px-5 pb-[calc(2.25rem+76px)] pt-9 text-center text-primary-foreground/70 md:pb-9">
-      <GaiaLogo className="mx-auto mb-3 h-11 w-auto rounded-md bg-background px-2 py-1 text-primary-deep" />
+      <GaiaLogo className="mx-auto mb-3 h-11 w-auto rounded-md bg-background px-3 py-2 text-primary-deep" />
       <p className="mx-auto max-w-[460px] text-[11.5px] leading-relaxed">
         Kelas ini bersifat edukasi dan bukan pengganti konsultasi atau pemeriksaan dokter.
         <br />© 2026 Gaia Parenting ·{" "}
@@ -798,8 +798,8 @@ export function GtmPage() {
   return (
     <div lang="id" className="min-h-screen bg-background">
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-[920px] items-center justify-between px-5 py-2 md:px-8">
-          <GaiaLogo className="h-12 w-auto text-primary-deep" />
+        <div className="mx-auto flex max-w-[920px] items-center justify-between px-5 py-2.5 md:px-8">
+          <GaiaLogo className="h-9 w-auto text-primary-deep" />
           <a href="#harga" className="text-[13px] font-bold text-primary underline-offset-4 hover:underline">
             Lihat harga
           </a>

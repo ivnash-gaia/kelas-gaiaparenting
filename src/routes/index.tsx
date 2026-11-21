@@ -192,7 +192,7 @@ function Directory() {
   return (
     <div className="min-h-screen bg-background">
       <div className="mx-auto max-w-[920px] px-5 pb-20">
-        <TopBar />
+        <TopBar flush />
 
         {/* Intro */}
         <section className="py-12">

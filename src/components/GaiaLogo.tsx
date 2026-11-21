@@ -1,7 +1,9 @@
 export function GaiaLogo({ className = "" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 225 225"
+      // Cropped to the artwork (it only fills the middle band of the 225x225 canvas), so the
+      // height classes at the call sites set the real logo height, not a mostly empty square.
+      viewBox="40 73 145 76"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       fill="currentColor"

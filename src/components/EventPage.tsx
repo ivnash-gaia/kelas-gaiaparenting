@@ -547,7 +547,7 @@ export function EventPage({ event: EVENT }: { event: EventData }) {
         </section>
 
         <footer className="bg-primary-deep px-5 py-9 text-center text-primary-foreground/70">
-          <GaiaLogo className="mx-auto mb-3 h-11 w-auto rounded-md bg-background px-2 py-1 text-primary-deep" />
+          <GaiaLogo className="mx-auto mb-3 h-11 w-auto rounded-md bg-background px-3 py-2 text-primary-deep" />
             <p className="text-[11.5px] leading-relaxed">
             Pengetahuan ilmiah, pemahaman budaya Indonesia.
             <br />© 2026 Gaia Parenting ·{" "}
